@@ -7,10 +7,15 @@ import Positions from "./pages/Positions/Positions";
 import Funds from "./pages/Funds/Funds";
 import AppPage from "./pages/Apps/AppPage";
 
+import Sidebar from "./sub-components/AsideBar/Sidebar";
+import Navbar from "./Navbar";
+
 function App() {
   return (
     <>
       <Router>
+        <Navbar/>
+        <Sidebar/>
         <Routes>
           <Route element={<Dashboard/>} path='/'/>
           <Route element={<Order/>} path='/order'/>
