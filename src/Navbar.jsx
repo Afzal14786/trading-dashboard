@@ -5,9 +5,9 @@ const Navbar = () => {
   const notActive = "hover:text-orange-500";
   return (
     <>
-      <header className="w-full shadow-md text-black p-2.5 flex justify-between items-center text-sm">
+      <header className="w-full shadow-md text-black h-8 flex justify-between items-center text-sm">
         {/* Left Header: Market Data */}
-        <div className="flex items-center border-r border-gray-300 pr-4">
+        <div className="flex items-center ml-3.5">
           <div className="flex items-center space-x-4 py-0 pl-4 pr-4">
             {/* NIFTY 50 */}
             <div className="flex items-center space-x-2">
@@ -26,7 +26,7 @@ const Navbar = () => {
         </div>
 
         {/* logo is seperated */}
-        <div className="flex flex-1 items-center justify-between pl-4">
+        <div className="flex flex-1 items-center justify-between border-l border-gray-300 pl-4">
           {/* logo should be in the left of the right header */}
           <NavLink to="/">
             <img src="/media/images/kite-logo.svg" alt="kite-logo" className="h-7 w-7"/>
@@ -57,7 +57,7 @@ const Navbar = () => {
             </nav>
 
             {/* User Info & Actions */}
-            <div className="flex items-center space-x-5 pl-8 pr-4 text-gray-600 border-l border-gray-500">
+            <div className="flex items-center space-x-5 pl-8 pr-4 text-gray-600 border-l border-gray-300">
               {/* Cart Icon */}
               <button className="hover:text-orange-500">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
