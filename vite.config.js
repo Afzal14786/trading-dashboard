@@ -10,5 +10,9 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+    server: {
+      host: true,
+      post: 5173,
+    },
   },
 })
