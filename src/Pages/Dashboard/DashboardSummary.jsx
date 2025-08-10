@@ -1,8 +1,13 @@
 import React from 'react'
+import "./style.css"
 
 const DashboardSummary = () => {
   return (
-    <h1>Dashboard Summary Page</h1>
+    <>
+      <div className='summaryPage'>
+          <h1>Hello</h1>
+      </div>
+    </>
   )
 }
 
