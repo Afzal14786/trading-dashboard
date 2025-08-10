@@ -1,0 +1,65 @@
+/* top bar container */
+
+.top-bar-container {
+    margin-top: 10px;
+    /* display: flex; */
+}
+
+/* dashboard summary */
+.menu-navbar-container {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar ul {
+    display: flex;
+    align-items: center;
+    padding-left: 0;
+}
+
+
+.nav-options {
+    color: black;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.selected {
+    color: green;
+    font-weight: bold;
+}
+
+.nav-options:hover {
+    color: rgb(18, 156, 3);
+}
+
+.profile {
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* Adds space between the avatar and the text */
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    background-color: #007bff;
+    /* Example avatar color */
+    border-radius: 50%;
+    /* Makes it a circle */
+}
+
+/* nefty 50 bar */
+.nefty-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
