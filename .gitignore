@@ -1,24 +1,24 @@
-# Node modules
-/node_modules
-
-# Build output
-/dist
-/build # Common for some frontend projects, though Vite usually uses 'dist'
-
-# Environment variables
-.env
-.env.local
-.env.*.local
-
-# Logs and temporary files
+# Logs
+logs
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# Editor/IDE specific
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
 .DS_Store
-Thumbs.db
-.idea/ # If you use IntelliJ/WebStorm
-.vscode/ # If you use VS Code, you might want to keep some settings like extensions.json, but generally exclude user-specific ones.
-
-# Cache files
-.eslintcache
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
