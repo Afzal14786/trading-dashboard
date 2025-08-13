@@ -1,12 +1,15 @@
 /* top bar container */
 
 .top-bar-container {
-    margin-top: 10px;
     display: flex;
+    /* margin-top: 10px; */
+    margin: 10;
     align-items: center;
     justify-content: space-between;
-    padding: 0 10px 0 10px;
+    padding: 10px;
+    box-shadow: 3px 2px 2px rgb(198, 191, 191);
 }
+
 
 /* dashboard summary */
 .menu-navbar-container {
