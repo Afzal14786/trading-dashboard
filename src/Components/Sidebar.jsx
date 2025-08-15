@@ -1,9 +1,11 @@
 import { useState, useContext} from 'react';
 import GeneralContext from "./GeneralContext";
 import "./style.css"
+import ShowChartIcon from '@mui/icons-material/ShowChart';
 
 import { Tooltip, Grow } from "@mui/material";
 import { Search, ArrowDownUp } from 'lucide-react'; 
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import {
   BarChartOutlined,
@@ -133,7 +135,7 @@ const WatchListActions = ({ uid }) => {
           <button className="sell">Sell</button>
         </Tooltip>
         <Tooltip
-          title="Analytics (A)"
+          title="Market Depth (D)"
           placement="top"
           arrow
           TransitionComponent={Grow}
@@ -142,11 +144,26 @@ const WatchListActions = ({ uid }) => {
             <BarChartOutlined className="icon" />
           </button>
         </Tooltip>
+
+        
+        <Tooltip title="Chart (C)" placement="top" arrow TransitionComponent={Grow}>
+          <button className="action">
+            <ShowChartIcon className="icon" />
+          </button>
+        </Tooltip>
+
+        <Tooltip title="Delete (del)" placement="top" arrow TransitionComponent={Grow}>
+          <button className="action">
+            <DeleteIcon className="icon" />
+          </button>
+        </Tooltip>
+        
         <Tooltip title="More" placement="top" arrow TransitionComponent={Grow}>
           <button className="action">
             <MoreHoriz className="icon" />
           </button>
         </Tooltip>
+
       </span>
     </span>
   );

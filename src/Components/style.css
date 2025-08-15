@@ -248,6 +248,11 @@ li:hover {
 }
 
 /* Other rules remain the same */
+.action {
+  background-color: #fff;
+  border: 0.7px solid #9b9b9b;
+}
+
 .buy {
   background-color: #4184f3;
   color: #fff;
@@ -262,14 +267,14 @@ li:hover {
   font-weight: 400;
   font-size: 0.8rem;
   border: 0.7px solid #ff5722;
-}
-
-.action {
-  background-color: #fff;
-  border: 0.7px solid #9b9b9b;
+  margin-bottom: 8px;
 }
 
 .icon {
   transform: scale(0.7);
   color: rgb(65, 65, 65);
+}
+
+.icon:hover {
+  background-color: #c3ceda;
 }
