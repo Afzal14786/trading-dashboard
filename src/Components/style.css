@@ -116,6 +116,7 @@
     width: 35%;
     height: 100vh;
     position: fixed;
+    margin-top: 10px;
     left: 0;
     border-right: 1px solid gray;
     overflow-y: auto;
