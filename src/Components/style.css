@@ -2,15 +2,18 @@
 
 .top-bar-container {
     display: flex;
-    margin: 10;
     align-items: center;
     justify-content: space-between;
     padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1000; 
+    background-color: #fff;
+    
     box-shadow: 3px 2px 2px rgb(198, 191, 191);
 }
 
 
-/* dashboard summary */
 .menu-navbar-container {
     display: flex;
     align-items: center;
@@ -26,6 +29,8 @@
     display: flex;
     align-items: center;
     padding-left: 0;
+    margin-top: 0; 
+    margin-bottom: 0;
 }
 
 .navbar ul li:last-child {
@@ -64,7 +69,8 @@
     border: 1px solid rgb(146, 129, 129);
 }
 
-/* nefty 50 bar */
+
+/* Nifty 50 and Sensex bar styles */
 .nifty span{
     margin-right: 5px;
 }
@@ -119,7 +125,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    margin: 25px 15px 15px 15px;
+    margin: 0 15px 15px 15px;
     padding: 5px 10px;
     justify-content: space-between;
     border: 1px solid black;
