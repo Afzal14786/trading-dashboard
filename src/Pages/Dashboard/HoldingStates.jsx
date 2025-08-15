@@ -19,6 +19,8 @@ const HoldingStates = () => {
 
             <div className="empty__div common"></div>
         </div>
+
+        <div className='horizontale__line'></div>
     </>
   );
 }
