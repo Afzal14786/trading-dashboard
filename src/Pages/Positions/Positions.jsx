@@ -2,7 +2,11 @@ import React from 'react'
 
 const Positions = () => {
   return (
-    <h1>Positions Page</h1>
+    <>
+      <div className='summary'>
+          <h1>I am position page</h1>
+      </div>
+    </>
   )
 }
 

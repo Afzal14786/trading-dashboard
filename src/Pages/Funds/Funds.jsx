@@ -2,7 +2,11 @@ import React from 'react'
 
 const Funds = () => {
   return (
-    <h1>Funds Page</h1>
+    <>
+      <div className='summary'>
+         <h1>I am funds page</h1>
+      </div>
+    </>
   )
 }
 

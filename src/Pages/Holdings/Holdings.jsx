@@ -2,7 +2,11 @@ import React from 'react'
 
 const Holdings = () => {
   return (
-    <h1>Holdings Page</h1>
+    <>
+      <div className='summary'>
+        <h1>I am holding page</h1>
+      </div>
+    </>
   )
 }
 

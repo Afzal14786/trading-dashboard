@@ -2,7 +2,6 @@
 
 .top-bar-container {
     display: flex;
-    /* margin-top: 10px; */
     margin: 10;
     align-items: center;
     justify-content: space-between;
@@ -15,9 +14,7 @@
 .menu-navbar-container {
     display: flex;
     align-items: center;
-    /* margin-right: 15px; */
 }
-
 
 .navbar {
     display: flex;
@@ -57,16 +54,14 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    /* Adds space between the avatar and the text */
 }
 
 .avatar {
     width: 32px;
     height: 32px;
-    background-color: #007bff;
-    /* Example avatar color */
+    background-color: #c3ceda;
     border-radius: 50%;
-    /* Makes it a circle */
+    border: 1px solid rgb(146, 129, 129);
 }
 
 /* nefty 50 bar */
@@ -108,4 +103,173 @@
 
 .index:hover {
     cursor: pointer;
+}
+
+/* watchlist */
+.watchlist-container {
+    width: 35%;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    border-right: 1px solid gray;
+    overflow-y: auto;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 25px 15px 15px 15px;
+    padding: 5px 10px;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 10px;
+    color: gray;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    border-left: 1px solid gray;
+    padding-left: 15px;
+
+}
+
+.search-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.search-icon {
+    cursor: pointer;
+}
+
+.sort-button {
+    cursor: pointer;
+    border: none;
+    border-radius: 20%;
+    margin-left: 8px;
+    margin-right: 10px;
+    background:none;
+    background-color: transparent;
+}
+
+.sort-button .sort-icon {
+    height: 20px;
+    color: gray;
+}
+
+.watchlist-size {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px 25px;
+    font-size: 15px;
+}
+
+.new-group a{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* watch list items css */
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: 300;
+  font-size: 0.8rem;
+  position: relative;
+  box-shadow: 0.3px 0.9px 0.9px 0.5px rgba(139, 121, 121, 0.5);
+  margin: 13px;
+}
+
+.itemInfo {
+    display: flex;
+    justify-content: flex-end; /* Align the whole block to the right */
+    align-items: center;
+    width: 150px; /* Give the container a fixed width */
+    gap: 15px;
+}
+
+.precent2 {
+    width: 70px; /* Assign a fixed width */
+    text-align: right; /* Right-align the text for number columns */
+}
+
+.price_list {
+    width: 80px; /* Assign a fixed width */
+    text-align: right; /* Right-align the text for number columns */
+}
+
+.down {
+  color: rgb(223, 73, 73);
+}
+
+.up {
+  color: rgb(103, 201, 136);
+}
+
+li {
+  position: relative;
+}
+
+li:hover {
+  z-index: 10;
+}
+
+/* Modify your existing .actions rule */
+.actions {
+  position: absolute;
+  top: 0; /* Add top and left to align perfectly */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex; /* This makes alignment work */
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px; /* Add some padding so it doesn't touch the edge */
+}
+
+.actions span button {
+  width: 40px;
+  height: 30px;
+  border-radius: 4px;
+  text-align: center;
+  margin-left: 8px; /* Use margin-left for spacing between buttons */
+  cursor: pointer;
+}
+
+/* Other rules remain the same */
+.buy {
+  background-color: #4184f3;
+  color: #fff;
+  font-weight: 400;
+  font-size: 0.8rem;
+  border: 0.7px solid #4184f3;
+}
+
+.sell {
+  background-color: #ff5722;
+  color: #fff;
+  font-weight: 400;
+  font-size: 0.8rem;
+  border: 0.7px solid #ff5722;
+}
+
+.action {
+  background-color: #fff;
+  border: 0.7px solid #9b9b9b;
+}
+
+.icon {
+  transform: scale(0.7);
+  color: rgb(65, 65, 65);
 }

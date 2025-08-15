@@ -4,3 +4,11 @@
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* global css for the display */
+
+.summary {
+  margin-left: 35%;
+  padding-left: 15px;
+  padding-top: 25px;
+}

@@ -1,4 +1,5 @@
 import DashboardNavbar from "./DashboardNavbar"
+import "./style.css"
 
 const NeftyFiftyBar = () => {
   return (

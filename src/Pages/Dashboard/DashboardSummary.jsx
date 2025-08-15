@@ -4,7 +4,7 @@ import "./style.css"
 const DashboardSummary = () => {
   return (
     <>
-      <div className='summaryPage'>
+      <div className='summaryPage summary'>
           <h1>Hello</h1>
       </div>
     </>
