@@ -1,4 +1,97 @@
-.summaryPage {
-    background-color: gray;
-    font: 20px;
+/* --- General Styles --- */
+.user__name {
+    margin: 20px 35px;
+    border-bottom: 1px solid #e0e0e0;
+    line-height: 2;
+    font-size: 28px;
+    font-weight: bold;
+    color: #555;
+    font-family: monospace;
+}
+
+/* --- Main Information Cards Section --- */
+.cards__container {
+    display: flex;
+    gap: 2rem;
+    margin: 3rem;
+}
+
+/* Card Styling for both Equity and Commodity */
+.card {
+    display: flex;
+    flex-direction: column; /* Stacks header and body vertically */
+    flex: 1;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    overflow: hidden; /* Ensures border-radius is respected by children */
+}
+
+.card__header {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #333;
+    padding: 1rem 1.5rem; /* Padding for the header */
+    border-bottom: 1px solid #e0e0e0; /* Separator line */
+    background-color: #fff;
+}
+
+.chart__icon {
+    margin-right: 8px;
+    color: #007bff;
+}
+
+.card__body {
+    display: flex;
+    align-items: flex-start;
+    padding: 1.5rem; /* Padding for the content area */
+}
+
+/* Left side of the card */
+.card__left {
+    line-height: 1.5;
+    margin-right: 2rem;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 2.5rem;
+    color: #222;
+}
+
+.lable {
+    color: #888;
+    font-weight: 400;
+}
+
+/* Right side of the card */
+.card__right {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-left: 2rem;
+    border-left: 1px solid #ddd;
+    width: 100%;
+}
+
+.view__statement {
+    text-decoration: none;
+    font-size: 15px;
+    color: #007bff;
+    margin-top: 0.5rem;
+}
+
+/* Alignment fix for the right-side data */
+.block {
+  display: flex;
+  justify-content: space-between;
+}
+
+.block span {
+    font-weight: 400;
+    color: #9e9e9e;
+    font-size: 15px;
 }
