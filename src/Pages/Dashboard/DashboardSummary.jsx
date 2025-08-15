@@ -61,6 +61,8 @@ const DashboardSummary = () => {
                 </div>
             </div>
         </div>
+
+        <div className="horizontale__line"></div>
       </div>
     </>
   )
