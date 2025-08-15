@@ -3,6 +3,8 @@ import "./style.css"
 import PieChartOutlineIcon from '@mui/icons-material/PieChartOutline';
 import WaterDropIcon from '@mui/icons-material/WaterDrop';
 
+import HoldingStates from "./HoldingStates"
+
 const DashboardSummary = () => {
   return (
     <>
@@ -63,6 +65,9 @@ const DashboardSummary = () => {
         </div>
 
         <div className="horizontale__line"></div>
+
+        {/* holding states */}
+        <HoldingStates/>
       </div>
     </>
   )
