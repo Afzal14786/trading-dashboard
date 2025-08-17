@@ -21,7 +21,10 @@ const Dashboard = () => {
             <div>
                 <Routes>
                     <Route element={<DashboardSummary/>} path='/'/>
-                    <Route element={<Orders/>} path='/orders' />
+                    <Route element={<Orders/>} path='/orders'>
+                        <Route index element={<Orders/>} />
+                    </Route>
+
                     <Route element={<HoldingsLayout/>} path='/holdings'>
                       <Route index element={<HoldingAll />} />
                       <Route path="all" element={<HoldingAll />} />
