@@ -6,7 +6,6 @@ import DashboardSummary from "../Pages/Dashboard/DashboardSummary"
 import Orders from "../Pages/Orders/Orders"
 import HoldingAll from '../Pages/Holdings/HoldingAll'
 import Positions from "../Pages/Positions/Positions"
-import Bids from "../Pages/Bids/Bids"
 import Funds from "../Pages/Funds/Funds"
 
 import SubHoldingPage from "../Pages/Holdings/SubHoldingPage"
@@ -43,7 +42,6 @@ const Dashboard = () => {
                       <Route element={<SubHoldingPage/>} path='/holdings/mutualfund'/>
                     </Route>
                     <Route element={<Positions/>} path='/positions' />
-                    <Route element={<Bids/>} path='/bids' />
                     <Route element={<Funds/>} path='/funds' />
                 </Routes>
             </div>

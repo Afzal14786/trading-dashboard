@@ -5,7 +5,7 @@ import "./style.css";
 
 const HoldingsLayout = () => {
   return (
-    <div className='summary holding__home'>
+    <div className='summary'>
       {/* This SubHeader will always be visible */}
       <SubHeader />
       

@@ -57,15 +57,6 @@ const DashboardNavbar = () => {
             </li>
 
             <li>
-              <Link to={'/bids'} 
-                className={`nav-options ${selectedMenu === 4 ? activeClass : ''}`}
-                onClick={()=> handleNavClick(4)}
-                >
-                Bids
-              </Link>
-            </li>
-
-            <li>
               <Link to={'/funds'} 
                 className={`nav-options ${selectedMenu === 5 ? activeClass : ''}`}
                 onClick={()=> handleNavClick(5)}
