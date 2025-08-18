@@ -1,0 +1,71 @@
+.add_fund_withdraw {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 2rem;
+}
+
+.add_fund_withdraw p {
+    margin-right: 4px;
+    font-weight: 400;
+    color: gray;
+    font-size: 13px;
+}
+
+.upi__svg {
+    height: 30px;
+    width: 30px;
+    margin-right: 20px;
+}
+
+.btn {
+    height: 33px;
+    width: 130px;
+    padding: 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.add_fund_btn {
+    background-color: rgb(76, 175, 80);
+}
+
+.withdraw_btn {
+    background-color: rgb(65, 132, 243);
+}
+
+
+.funds_title {
+  display: flex;
+  justify-content: space-between; /* Push left and right sections apart */
+  width: 48%; /* Make sure it spans the full container */
+  align-items: center;
+  font-weight: 400;
+  margin-top: 2rem;
+  margin-left: 1rem;
+}
+
+/* Group left items (icon + name) together horizontally */
+.left_section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pi_chart_icon {
+  margin-top: 8px;
+}
+
+/* Right toolbar (view statement + help) */
+.right_toolbar {
+  display: flex;
+  gap: 12px; /* space between the links */
+}
+
+.right_toolbar a {
+  text-decoration: none;
+  font-size: 12px;
+}
