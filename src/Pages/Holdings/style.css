@@ -108,10 +108,11 @@
 }
 
 .description {
-    display: flex;
-    text-align: center;
-    justify-content: center;
+    max-width: 400px;
     color: #6e6e6e;
+    text-align: center;
+    margin: 0 auto 20px;
+    font-size: 15px;
 }
 
 .getting__started__btn {
@@ -139,6 +140,12 @@
 }
 
 /* sub heading navigation */
+.holding_sub_header {
+    border-bottom: 0.5px solid #dadada;
+    margin-right: 1rem;
+    line-height: 1.7;
+}
+
 .holding__nav {
     display: flex;
     justify-content: start;
@@ -174,9 +181,4 @@
 
 .holding__nav .links:hover {
     border-bottom: 2px solid rgb(255, 166, 0);
-}
-
-.coin_holding_img {
-    height: 100px;
-    width: 190px;
 }

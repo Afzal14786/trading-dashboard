@@ -37,10 +37,10 @@ const Dashboard = () => {
                     </Route>
 
                     <Route element={<HoldingsLayout/>} path='/holdings'>
-                      <Route index element={<HoldingAll />} />
-                      <Route path="all" element={<HoldingAll />} />
-                       <Route path="equity" element={<EquityPage />} />
-                       <Route path='mutualfund' element={<SubHoldingPage/>}/>
+                      <Route index element={<HoldingAll />} path='/holdings'/>
+                      <Route element={<HoldingAll />} path="/holdings/all"/>
+                      <Route element={<EquityPage />} path="/holdings/equity"/>
+                      <Route element={<SubHoldingPage/>} path='/holdings/mutualfund'/>
                     </Route>
                     <Route element={<Positions/>} path='/positions' />
                     <Route element={<Bids/>} path='/bids' />
