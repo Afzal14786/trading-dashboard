@@ -41,16 +41,16 @@
 .nav-options {
     color: black;
     text-decoration: none;
-    margin-left: 15px;
+    margin-left: 1.5rem;
 }
 
 .selected {
-    color: green;
+    color: orange;
     font-weight: bold;
 }
 
 .nav-options:hover {
-    color: rgb(18, 156, 3);
+    color: orange;
 }
 
 .profile {

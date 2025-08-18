@@ -1,15 +1,15 @@
-import React from "react"
 import { NavLink } from "react-router-dom"; 
 
+import "./style.css"
 const OrderSubHeader = ()=> {
     return (
         <div className="order_subheader">
-            <nav className="order_nav">
+            <nav className="order_nav holding__nav">
                 <ul style={{listStyleType: "none"}}>
                     <li>
                         <NavLink
                             className='links'
-                            to={'/'}
+                            to={'/orders'}
                         >
                             Orders
                         </NavLink>
@@ -18,7 +18,7 @@ const OrderSubHeader = ()=> {
                     <li>
                         <NavLink
                             className='links'
-                            to={'/'}
+                            to={'/orders/gtt'}
                         >
                             GTT
                         </NavLink>
@@ -27,7 +27,7 @@ const OrderSubHeader = ()=> {
                     <li>
                         <NavLink
                             className='links'
-                            to={'/'}
+                            to={'/orders/baskets'}
                         >
                             Baskets
                         </NavLink>
@@ -36,7 +36,7 @@ const OrderSubHeader = ()=> {
                     <li>
                         <NavLink
                             className='links'
-                            to={'/'}
+                            to={'/orders/sip'}
                         >
                             SIP
                         </NavLink>
@@ -45,7 +45,7 @@ const OrderSubHeader = ()=> {
                     <li>
                         <NavLink
                             className='links'
-                            to={'/'}
+                            to={'/orders/alerts'}
                         >
                             Alerts
                         </NavLink>

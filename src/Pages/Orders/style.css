@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 5rem;
 }
 
 .order__book__img {
@@ -35,11 +36,54 @@
 }
 
 .get__started__btn {
-    height: 30px;
-    width: 100px;
+    height: 35px;
+    width: 150px;
     border: none;
-    border-radius: 3px;
+    border-radius: 4px;
     background-color: #007bff;
     color: white;
-    margin-top: 20px;
+    cursor: pointer;
+    /* margin-top: 20px; */
+}
+
+.get__started__btn:hover {
+    box-shadow: 2px 1px 2px 1px rgb(168, 168, 37);
+}
+
+/* designing sub pages */
+
+/* gtt */
+
+
+.gtt__image {
+    height: 200px;
+    width: 200px;
+}
+
+.desc_div p {
+    max-width: 400px;
+    color: #6e6e6e;
+    text-align: center;
+    margin: 0 auto 20px;
+    font-size: 15px;
+}
+
+.learn__more {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.learn__more:hover {
+    color: orange;
+}
+
+.sip__image {
+    height: 150px;
+    width: 150px;
+}
+
+.alert_icon {
+    height: 150px;
+    width: 150px;
+    margin-bottom: 18px;
 }

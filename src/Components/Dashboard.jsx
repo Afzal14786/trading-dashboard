@@ -13,6 +13,13 @@ import SubHoldingPage from "../Pages/Holdings/SubHoldingPage"
 import HoldingsLayout from '../Pages/Holdings/HoldingsLayout'
 import EquityPage from '../Pages/Holdings/EquityPage'
 
+
+import OrdersLayout from '../Pages/Orders/OrdersLayout'
+import BasketsPage from '../Pages/Orders/BasketsPage'
+import GttPage from '../Pages/Orders/GttPage'
+import AlertsPage from '../Pages/Orders/AlertsPage'
+import SipPage from '../Pages/Orders/SipPage'
+
 const Dashboard = () => {
   return (
     <>
@@ -21,8 +28,12 @@ const Dashboard = () => {
             <div>
                 <Routes>
                     <Route element={<DashboardSummary/>} path='/'/>
-                    <Route element={<Orders/>} path='/orders'>
-                        <Route index element={<Orders/>} />
+                    <Route element={<OrdersLayout/>} path='/orders'>
+                        <Route index element={<Orders/>} path='/orders'/>
+                        <Route element={<GttPage/>} path='/orders/gtt'/>
+                        <Route element={<BasketsPage/>} path='/orders/baskets'/>
+                        <Route element={<SipPage/>} path='/orders/sip'/>
+                        <Route element={<AlertsPage/>} path='/orders/alerts'/>
                     </Route>
 
                     <Route element={<HoldingsLayout/>} path='/holdings'>
