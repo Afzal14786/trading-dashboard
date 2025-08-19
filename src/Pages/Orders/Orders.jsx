@@ -4,17 +4,17 @@ import "./style.css"
 const Orders = () => {
   return (
     <>
-      <div className='order__book'>
-        <div className="order__status">
-          <div className="desc">
-            <img src="/images/orderbook.svg" alt="order Book" className='order__book__img' />
+      <div className='empty_state'>
+        <div>
+          <div className="description">
+            <img src="/images/orderbook.svg" alt="order Book" className='image' />
             <div className='desc_div'>
               <p>You haven't placed any orders today</p>
             </div>
           </div>
 
-          <div className="btn">
-            <button className='get__started__btn'>Get Started</button>
+          <div className="empty_btn">
+            <button className='btn1'>Get Started</button>
             <a href="#" className='view__history'>View History</a>
           </div>
         </div>

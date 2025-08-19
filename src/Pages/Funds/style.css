@@ -18,15 +18,18 @@
     margin-right: 20px;
 }
 
-.btn {
+.add_btn, .withdraw_btn{
     height: 33px;
-    width: 130px;
-    padding: 20px;
+    width: 125px;
     color: white;
     border: none;
     border-radius: 5px;
     text-align: center;
     font-weight: 600;
+}
+
+.add_fund_withdraw button:last-child {
+  margin-left: 10px;
 }
 
 .add_fund_btn {

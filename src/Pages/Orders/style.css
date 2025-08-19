@@ -1,13 +1,13 @@
-.order__book {
+.empty_state {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 5rem;
 }
 
-.order__book__img {
-    height: 100px;
-    width: 100px;
+.image {
+    height: 120px;
+    width: 120px;
 }
 
 .desc {
@@ -17,11 +17,7 @@
     align-items: center;
 }
 
-.desc__text {
-    color: #6e6e6e;
-}
-
-.btn {
+.empty_btn {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -35,7 +31,7 @@
     
 }
 
-.get__started__btn {
+.btn1 {
     height: 35px;
     width: 150px;
     border: none;
@@ -43,7 +39,6 @@
     background-color: #007bff;
     color: white;
     cursor: pointer;
-    /* margin-top: 20px; */
 }
 
 .get__started__btn:hover {

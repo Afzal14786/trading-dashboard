@@ -19,8 +19,8 @@ const HoldingAll = () => {
           </p>
         </div>
 
-        <div className="btn">
-          <button className="getting__started__btn">Get Started</button>
+        <div className="empty_btn">
+          <button className="btn1">Get Started</button>
         </div>
 
         <a href="#" className="analytics">

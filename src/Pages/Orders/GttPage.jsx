@@ -2,9 +2,9 @@ import "./style.css";
 
 const GttPage = () => {
   return (
-    <div className="order__book">
-      <div className="order__status">
-        <div className="desc">
+    <div className="empty_state">
+      <div>
+        <div className="description">
           <img src="/images/gtt.svg" alt="order Book" className="gtt__image" />
 
           <div className="desc_div">
@@ -14,8 +14,8 @@ const GttPage = () => {
             </p>
         </div>
         </div>
-        <div className="btn">
-          <button className="get__started__btn">New GTT</button>
+        <div className="empty_btn">
+          <button className="btn1">New GTT</button>
         </div>
       </div>
     </div>

@@ -13,8 +13,8 @@ const Funds = () => {
         <div className="add_fund_withdraw">
           <p>Instant, zero-cost fund transfers with</p>
           <img src="/images/UPI.svg" alt="upi svg" className="upi__svg" />
-          <button className="btn add_fund_btn">Add funds</button>
-          <button className="btn withdraw_btn">Withdraw</button>
+          <button className="add_btn add_fund_btn">Add funds</button>
+          <button className="withdraw_btn withdraw_btn">Withdraw</button>
         </div>
 
         {/* equity */}

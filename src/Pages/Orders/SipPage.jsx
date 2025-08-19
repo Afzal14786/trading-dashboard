@@ -2,9 +2,9 @@ import "./style.css";
 
 const SipPage = () => {
   return (
-    <div className="order__book">
-      <div className="order__status">
-        <div className="desc">
+    <div className="empty_state">
+      <div>
+        <div className="description">
           <img
             src="/images/sip.svg"
             alt="order Book"
@@ -15,8 +15,8 @@ const SipPage = () => {
             <p>You haven't created any SIPs.</p>
           </div>
         </div>
-        <div className="btn">
-          <button className="get__started__btn">Create new SIP</button>
+        <div className="empty_btn">
+          <button className="btn1">Create new SIP</button>
         </div>
       </div>
     </div>

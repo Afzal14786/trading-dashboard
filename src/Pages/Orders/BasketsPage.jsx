@@ -2,9 +2,9 @@ import "./style.css";
 
 const BasketsPage = () => {
   return (
-    <div className="order__book">
-      <div className="order__status">
-        <div className="desc">
+    <div className="empty_state">
+      <div>
+        <div className="description">
           <img src="/images/basket.svg" alt="order Book" className="order__book__img" />
 
           <div className="desc_div">
@@ -13,8 +13,8 @@ const BasketsPage = () => {
             </p>
           </div>
         </div>
-        <div className="btn">
-          <button className="get__started__btn">New Basket</button>
+        <div className="empty_btn">
+          <button className="btn1">New Basket</button>
         </div>
       </div>
     </div>

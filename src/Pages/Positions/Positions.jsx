@@ -4,16 +4,16 @@ const Positions = () => {
   return (
     <>
       <div className='summary'>
-        <div className="order__status">
-          <div className="desc">
-            <img src="/images/positions.svg" alt="order Book" className='order__book__img' />
+        <div className="empty_state">
+          <div className="description">
+            <img src="/images/positions.svg" alt="order Book" className='image' />
             <div className='desc_div'>
               <p>You don't have any positions yet</p>
             </div>
           </div>
 
-          <div className="btn">
-            <button className='get__started__btn'>Get Started</button>
+          <div className="empty_btn">
+            <button className='btn1'>Get Started</button>
             <a href="#" className='view__history'>Analytics</a>
           </div>
         </div>
