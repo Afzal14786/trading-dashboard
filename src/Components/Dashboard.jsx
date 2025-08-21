@@ -7,6 +7,7 @@ import Orders from "../Pages/Orders/Orders"
 import HoldingAll from '../Pages/Holdings/HoldingAll'
 import Positions from "../Pages/Positions/Positions"
 import Funds from "../Pages/Funds/Funds"
+import Profile from '../Pages/Profile/Profile'
 
 import SubHoldingPage from "../Pages/Holdings/SubHoldingPage"
 import HoldingsLayout from '../Pages/Holdings/HoldingsLayout'
@@ -43,6 +44,7 @@ const Dashboard = () => {
                     </Route>
                     <Route element={<Positions/>} path='/positions' />
                     <Route element={<Funds/>} path='/funds' />
+                    <Route element={<Profile/>} path='/profile' />
                 </Routes>
             </div>
         </div>
