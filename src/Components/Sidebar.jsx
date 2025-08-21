@@ -116,55 +116,37 @@ const WatchListActions = ({ uid }) => {
 
   return (
     <span className="actions">
-      <span>
-        <Tooltip
-          title="Buy (B)"
-          placement="top"
-          arrow
-          TransitionComponent={Grow}
-        >
-          <button className="buy" onClick={handleBuyClick}>Buy</button>
-        </Tooltip>
+      <Tooltip title="Buy (B)" placement="top" arrow TransitionComponent={Grow}>
+        <button className="buy" onClick={handleBuyClick}>Buy</button>
+      </Tooltip>
 
-        <Tooltip
-          title="Sell (S)"
-          placement="top"
-          arrow
-          TransitionComponent={Grow}
-        >
-          <button className="sell">Sell</button>
-        </Tooltip>
-        <Tooltip
-          title="Market Depth (D)"
-          placement="top"
-          arrow
-          TransitionComponent={Grow}
-        >
-          <button className="action">
-            <BarChartOutlined className="icon" />
-          </button>
-        </Tooltip>
+      <Tooltip title="Sell (S)" placement="top" arrow TransitionComponent={Grow}>
+        <button className="sell">Sell</button>
+      </Tooltip>
 
-        
-        <Tooltip title="Chart (C)" placement="top" arrow TransitionComponent={Grow}>
-          <button className="action">
-            <ShowChartIcon className="icon" />
-          </button>
-        </Tooltip>
+      <Tooltip title="Market Depth (D)" placement="top" arrow TransitionComponent={Grow}>
+        <button className="action">
+          <BarChartOutlined className="icon" />
+        </button>
+      </Tooltip>
 
-        <Tooltip title="Delete (del)" placement="top" arrow TransitionComponent={Grow}>
-          <button className="action">
-            <DeleteIcon className="icon" />
-          </button>
-        </Tooltip>
-        
-        <Tooltip title="More" placement="top" arrow TransitionComponent={Grow}>
-          <button className="action">
-            <MoreHoriz className="icon" />
-          </button>
-        </Tooltip>
+      <Tooltip title="Chart (C)" placement="top" arrow TransitionComponent={Grow}>
+        <button className="action">
+          <ShowChartIcon className="icon" />
+        </button>
+      </Tooltip>
 
-      </span>
+      <Tooltip title="Delete (del)" placement="top" arrow TransitionComponent={Grow}>
+        <button className="action">
+          <DeleteIcon className="icon" />
+        </button>
+      </Tooltip>
+      
+      <Tooltip title="More" placement="top" arrow TransitionComponent={Grow}>
+        <button className="action">
+          <MoreHoriz className="icon" />
+        </button>
+      </Tooltip>
     </span>
   );
 };
