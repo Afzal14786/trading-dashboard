@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import {PersonAddAlt, Logout} from "@mui/icons-material"
-import PaidIcon from '@mui/icons-material/Paid';
-import DonutLargeIcon from '@mui/icons-material/DonutLarge';
-import EditIcon from '@mui/icons-material/Edit';
-import KeyboardCommandKeyIcon from '@mui/icons-material/KeyboardCommandKey';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import SupportIcon from '@mui/icons-material/Support';
+import { PersonAddAlt, Logout } from "@mui/icons-material";
+import PaidIcon from "@mui/icons-material/Paid";
+import DonutLargeIcon from "@mui/icons-material/DonutLarge";
+import EditIcon from "@mui/icons-material/Edit";
+import KeyboardCommandKeyIcon from "@mui/icons-material/KeyboardCommandKey";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import SupportIcon from "@mui/icons-material/Support";
 
 import "./style.css";
 
@@ -19,11 +19,25 @@ const DashboardNavbar = () => {
 
   const activeClass = "selected";
 
-  const [selectProfile, setSelectedProfile] = useState(false);
+  const [selectProfile, setSelectProfile] = useState(false);
+  const dropdownRef = useRef(null);
 
   const handleProfile = () => {
-    setSelectedProfile(!selectProfile);
+    setSelectProfile((prev) => !prev);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setSelectProfile(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
@@ -99,85 +113,103 @@ const DashboardNavbar = () => {
               </Link>
             </li>
           </ul>
-          {/* this div is for user profile */}
-          <div className="profile-container">
-            <div className="user-profile" onClick={handleProfile}>
-              <div className="avatar"></div>
-              <span>CKV524</span>
+          <div className="user-profile" onClick={handleProfile}>
+            <div className="avatar">
+              <img src="/images/profile_test.jpg" alt="profile_image" />
             </div>
+            <span>CKV524</span>
+          </div>
 
-            {/* START OF UPDATED DROPDOWN JSX */}
-            {selectProfile && (
-              <div className="dropdown-menu">
-                {" "}
-                {/* Make sure class is dropdown-menu */}
-                <div className="dropdown-header">
-                  <div className="user-info">
-                    <h4>Md Afjal Ansari</h4>
-                    <p>mdafzal14777@gmail.com</p>
-                  </div>
-                  <EditIcon size={18} className="edit-icon" />
+          {selectProfile && (
+            <div className="dropdown_navbar_container">
+              <div className="dropdown_header">
+                <div className="user_information">
+                  <Link to={"/profile"}>
+                    <span className="user_name">Md Afzal Ansari</span>
+                    <span className="user_email">mdafzal14777@gmail.com</span>
+                  </Link>
+
+                  <Link to={"/update_profile"}>
+                    <div className="edit_icon">
+                      <span>
+                        <EditIcon />
+                      </span>
+                    </div>
+                  </Link>
                 </div>
-                <div className="dropdown-section">
-                  <div className="privacy-mode">
-                    <span>Privacy mode</span>
-                    <label className="switch">
-                      <input type="checkbox" />
-                      <span className="slider round"></span>
-                    </label>
-                  </div>
-                </div>
-                <div className="dropdown-section">
-                  <ul className="dropdown-links">
-                    <li>
-                      <Link to="/console">
-                        <DonutLargeIcon size={20} /> Console
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/coin">
-                        <PaidIcon size={20} /> Coin
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/support">
-                        <SupportIcon size={20} /> Support
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/invite">
-                        <PersonAddIcon size={20} /> Invite friends
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-                <div className="dropdown-section">
-                  <ul className="dropdown-links">
-                    <li>
-                      <Link to="/shortcuts">
-                        <KeyboardCommandKeyIcon size={20} /> Keyboard shortcuts
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/manual">
-                        <PersonAddAlt size={20} /> User manual
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-                <div className="dropdown-section">
-                  <ul className="dropdown-links">
-                    <li>
-                      <Link to="/logout">
-                        <Logout size={20} /> Logout
-                      </Link>
-                    </li>
-                  </ul>
+
+                <hr />
+
+                <div className="privacy-mode">
+                  <span>Privacy mode</span>
+                  <label className="switch">
+                    <input type="checkbox" />
+                    <span className="slider round"></span>
+                  </label>
                 </div>
               </div>
-            )}
-            {/* END OF UPDATED DROPDOWN JSX */}
-          </div>
+
+              <hr />
+
+              <div className="dropdown_options">
+                <Link to={""}>
+                  <span>
+                    <DonutLargeIcon />{" "}
+                  </span>
+                  <span>Console</span>
+                </Link>
+
+                <Link to={""}>
+                  <span>
+                    <PaidIcon />{" "}
+                  </span>
+                  <span>Icon</span>
+                </Link>
+
+                <Link to={"/"}>
+                  <span>
+                    <SupportIcon />{" "}
+                  </span>
+                  <span>Support</span>
+                </Link>
+
+                <Link to={"/"}>
+                  <span>
+                    <PersonAddIcon />{" "}
+                  </span>
+                  <span>Icon</span>
+                </Link>
+              </div>
+
+              <hr />
+
+              <div className="support_links">
+                <Link to={"/support"}>
+                  <span>
+                    <KeyboardCommandKeyIcon />
+                  </span>
+                  <span>Keyboard Shortcuts</span>
+                </Link>
+
+                <Link to={"/"}>
+                  <span>
+                    <PersonAddAlt />
+                  </span>
+                  <span>User Manual</span>
+                </Link>
+              </div>
+
+              <hr />
+
+              <div className="logout">
+                <span className="logout_icon">
+                  {" "}
+                  <Logout />
+                </span>
+                <span>Logout</span>
+              </div>
+            </div>
+          )}
         </nav>
       </div>
     </>
