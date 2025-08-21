@@ -12,3 +12,76 @@
   padding-left: 15px;
   padding-top: 25px;
 }
+
+/* path  not found css */
+.error-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9fa, #eef2f3);
+  text-align: center;
+  padding: 20px;
+}
+
+.error-content {
+  max-width: 500px;
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.error-image {
+  width: 220px;
+  margin-bottom: 20px;
+}
+
+.error-content h1 {
+  font-size: 80px;
+  font-weight: 800;
+  color: #ff4d4f;
+  margin-bottom: 10px;
+}
+
+.error-content h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.error-content p {
+  font-size: 15px;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.go-home {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #007bff;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.go-home:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* subtle entrance animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
