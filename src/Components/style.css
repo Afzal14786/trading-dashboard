@@ -361,6 +361,7 @@ li:hover {
 /* General styling for each section */
 .dropdown-section {
   display: flex;
+  align-items: flex-start;
   padding: 8px 16px;
   border-top: 1px solid #f0f0f0;
 }
@@ -368,7 +369,6 @@ li:hover {
 /* Privacy mode toggle */
 .privacy-mode {
   display: flex;
-  width: 100%;
   justify-content: space-between;
   align-items: center;
   font-size: 15px;
@@ -377,8 +377,8 @@ li:hover {
 
 /* The actual list of links */
 .dropdown-links {
-  flex-direction: column; 
-  width: 100%;
+  flex-direction: column; /* <-- ADD THIS LINE */
+  align-items: flex-start;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -397,11 +397,6 @@ li:hover {
 
 .dropdown-links li a:hover {
   color: #3182ce;
-}
-
-.dropdown-links div {
-  display: flex;
-  width: 100%;
 }
 
 /* --- Styles for the Toggle Switch --- */

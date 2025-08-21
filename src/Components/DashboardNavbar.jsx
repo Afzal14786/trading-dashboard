@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import {Logout} from "@mui/icons-material"
+import {PersonAddAlt, Logout} from "@mui/icons-material"
 import PaidIcon from '@mui/icons-material/Paid';
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import EditIcon from '@mui/icons-material/Edit';
 import KeyboardCommandKeyIcon from '@mui/icons-material/KeyboardCommandKey';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import SupportIcon from '@mui/icons-material/Support';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
 import "./style.css";
 
@@ -117,7 +116,7 @@ const DashboardNavbar = () => {
                     <h4>Md Afjal Ansari</h4>
                     <p>mdafzal14777@gmail.com</p>
                   </div>
-                  <EditIcon  className="edit-icon" />
+                  <EditIcon size={18} className="edit-icon" />
                 </div>
                 <div className="dropdown-section">
                   <div className="privacy-mode">
@@ -128,10 +127,9 @@ const DashboardNavbar = () => {
                     </label>
                   </div>
                 </div>
-
                 <div className="dropdown-section">
                   <ul className="dropdown-links">
-                    <li> 
+                    <li>
                       <Link to="/console">
                         <DonutLargeIcon size={20} /> Console
                       </Link>
@@ -153,7 +151,6 @@ const DashboardNavbar = () => {
                     </li>
                   </ul>
                 </div>
-
                 <div className="dropdown-section">
                   <ul className="dropdown-links">
                     <li>
@@ -163,7 +160,7 @@ const DashboardNavbar = () => {
                     </li>
                     <li>
                       <Link to="/manual">
-                        <HelpOutlineIcon size={20} /> User manual
+                        <PersonAddAlt size={20} /> User manual
                       </Link>
                     </li>
                   </ul>
