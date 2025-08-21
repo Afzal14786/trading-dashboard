@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { PersonAddAlt, Logout } from "@mui/icons-material";
 import PaidIcon from "@mui/icons-material/Paid";
 import DonutLargeIcon from "@mui/icons-material/DonutLarge";
@@ -12,107 +12,105 @@ import "./style.css";
 
 const DashboardNavbar = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
+  const [selectProfile, setSelectProfile] = useState(false);
+
+  const dropdownRef = useRef(null);
+  const location = useLocation();
 
   const handleNavClick = (index) => {
     setSelectedMenu(index);
   };
 
-  const activeClass = "selected";
-
-  const [selectProfile, setSelectProfile] = useState(false);
-  const dropdownRef = useRef(null);
-
   const handleProfile = () => {
     setSelectProfile((prev) => !prev);
   };
 
+  // ✅ Close dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setSelectProfile(false);
       }
-    };
-
+    }
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
+  // ✅ Close dropdown on route change
+  useEffect(() => {
+    setSelectProfile(false);
+  }, [location]);
+
+  const activeClass = "selected";
+
   return (
-    <>
-      <div className="menu-navbar-container">
-        {/* mention logo here */}
-        <Link to={"/"}>
-          <img
-            src="/kite-logo.svg"
-            alt="dashboard logo"
-            style={{ height: "25px", width: "25px" }}
-          />
-        </Link>
+    <div className="menu-navbar-container">
+      {/* mention logo here */}
+      <Link to={"/"}>
+        <img
+          src="/kite-logo.svg"
+          alt="dashboard logo"
+          style={{ height: "25px", width: "25px" }}
+        />
+      </Link>
 
-        <nav className="navbar">
-          <ul style={{ listStyleType: "none" }}>
-            <li>
-              <Link
-                to={"/"}
-                className={`nav-options ${
-                  selectedMenu === 0 ? activeClass : ""
-                }`}
-                onClick={() => handleNavClick(0)}
-              >
-                Dashboard
-              </Link>
-            </li>
+      <nav className="navbar">
+        <ul style={{ listStyleType: "none" }}>
+          <li>
+            <Link
+              to={"/"}
+              className={`nav-options ${selectedMenu === 0 ? activeClass : ""}`}
+              onClick={() => handleNavClick(0)}
+            >
+              Dashboard
+            </Link>
+          </li>
 
-            <li>
-              <Link
-                to={"/orders"}
-                className={`nav-options ${
-                  selectedMenu === 1 ? activeClass : ""
-                }`}
-                onClick={() => handleNavClick(1)}
-              >
-                Orders
-              </Link>
-            </li>
+          <li>
+            <Link
+              to={"/orders"}
+              className={`nav-options ${selectedMenu === 1 ? activeClass : ""}`}
+              onClick={() => handleNavClick(1)}
+            >
+              Orders
+            </Link>
+          </li>
 
-            <li>
-              <Link
-                to={"/holdings"}
-                className={`nav-options ${
-                  selectedMenu === 2 ? activeClass : ""
-                }`}
-                onClick={() => handleNavClick(2)}
-              >
-                Holdings
-              </Link>
-            </li>
+          <li>
+            <Link
+              to={"/holdings"}
+              className={`nav-options ${selectedMenu === 2 ? activeClass : ""}`}
+              onClick={() => handleNavClick(2)}
+            >
+              Holdings
+            </Link>
+          </li>
 
-            <li>
-              <Link
-                to={"/positions"}
-                className={`nav-options ${
-                  selectedMenu === 3 ? activeClass : ""
-                }`}
-                onClick={() => handleNavClick(3)}
-              >
-                Positions
-              </Link>
-            </li>
+          <li>
+            <Link
+              to={"/positions"}
+              className={`nav-options ${selectedMenu === 3 ? activeClass : ""}`}
+              onClick={() => handleNavClick(3)}
+            >
+              Positions
+            </Link>
+          </li>
 
-            <li>
-              <Link
-                to={"/funds"}
-                className={`nav-options ${
-                  selectedMenu === 5 ? activeClass : ""
-                }`}
-                onClick={() => handleNavClick(5)}
-              >
-                Funds
-              </Link>
-            </li>
-          </ul>
+          <li>
+            <Link
+              to={"/funds"}
+              className={`nav-options ${selectedMenu === 5 ? activeClass : ""}`}
+              onClick={() => handleNavClick(5)}
+            >
+              Funds
+            </Link>
+          </li>
+        </ul>
+
+        {/* ✅ Wrapper ref here */}
+        <div className="profile-wrapper" ref={dropdownRef}>
           <div className="user-profile" onClick={handleProfile}>
             <div className="avatar">
               <img src="/images/profile_test.jpg" alt="profile_image" />
@@ -131,9 +129,7 @@ const DashboardNavbar = () => {
 
                   <Link to={"/update_profile"}>
                     <div className="edit_icon">
-                      <span>
-                        <EditIcon />
-                      </span>
+                      <EditIcon />
                     </div>
                   </Link>
                 </div>
@@ -153,31 +149,19 @@ const DashboardNavbar = () => {
 
               <div className="dropdown_options">
                 <Link to={""}>
-                  <span>
-                    <DonutLargeIcon />{" "}
-                  </span>
-                  <span>Console</span>
+                  <DonutLargeIcon /> <span>Console</span>
                 </Link>
 
                 <Link to={""}>
-                  <span>
-                    <PaidIcon />{" "}
-                  </span>
-                  <span>Icon</span>
+                  <PaidIcon /> <span>Icon</span>
                 </Link>
 
                 <Link to={"/"}>
-                  <span>
-                    <SupportIcon />{" "}
-                  </span>
-                  <span>Support</span>
+                  <SupportIcon /> <span>Support</span>
                 </Link>
 
                 <Link to={"/"}>
-                  <span>
-                    <PersonAddIcon />{" "}
-                  </span>
-                  <span>Icon</span>
+                  <PersonAddIcon /> <span>Icon</span>
                 </Link>
               </div>
 
@@ -185,16 +169,12 @@ const DashboardNavbar = () => {
 
               <div className="support_links">
                 <Link to={"/support"}>
-                  <span>
-                    <KeyboardCommandKeyIcon />
-                  </span>
+                  <KeyboardCommandKeyIcon />
                   <span>Keyboard Shortcuts</span>
                 </Link>
 
                 <Link to={"/"}>
-                  <span>
-                    <PersonAddAlt />
-                  </span>
+                  <PersonAddAlt />
                   <span>User Manual</span>
                 </Link>
               </div>
@@ -202,17 +182,13 @@ const DashboardNavbar = () => {
               <hr />
 
               <div className="logout">
-                <span className="logout_icon">
-                  {" "}
-                  <Logout />
-                </span>
-                <span>Logout</span>
+                <Logout /> <span>Logout</span>
               </div>
             </div>
           )}
-        </nav>
-      </div>
-    </>
+        </div>
+      </nav>
+    </div>
   );
 };
 
