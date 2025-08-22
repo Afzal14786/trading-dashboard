@@ -25,7 +25,6 @@ import LoginPage from '../Pages/LoginPage/LoginPage'
 const Dashboard = () => {
   return (
     <Routes>
-      {/* Routes WITH sidebar + navbar */}
       <Route element={<MainLayout />}>
         <Route path="/" element={<DashboardSummary />} />
 
@@ -51,7 +50,6 @@ const Dashboard = () => {
         <Route path="/profile" element={<Profile />} />
       </Route>
 
-      {/* Catch-all route WITHOUT layout */}
       <Route path="*" element={<PathNotFound />} />
     </Routes>
   );

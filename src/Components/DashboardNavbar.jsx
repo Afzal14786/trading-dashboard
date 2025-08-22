@@ -25,7 +25,7 @@ const DashboardNavbar = () => {
     setSelectProfile((prev) => !prev);
   };
 
-  // ✅ Close dropdown when clicking outside
+  
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -38,7 +38,6 @@ const DashboardNavbar = () => {
     };
   }, []);
 
-  // ✅ Close dropdown on route change
   useEffect(() => {
     setSelectProfile(false);
   }, [location]);
@@ -109,7 +108,6 @@ const DashboardNavbar = () => {
           </li>
         </ul>
 
-        {/* ✅ Wrapper ref here */}
         <div className="profile-wrapper" ref={dropdownRef}>
           <div className="user-profile" onClick={handleProfile}>
             <div className="avatar">
