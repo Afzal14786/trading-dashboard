@@ -19,7 +19,7 @@ import SipPage from '../Pages/Orders/SipPage'
 
 import MainLayout from './MainLayout'
 import PathNotFound from '../PathNotFound'
-
+import UpdatePage from '../Pages/UpdatePage/UpdatePage'
 import LoginPage from '../Pages/LoginPage/LoginPage'
 
 const Dashboard = () => {
@@ -46,6 +46,7 @@ const Dashboard = () => {
 
         <Route path="/positions" element={<Positions />} />
         <Route path="/funds" element={<Funds />} />
+        <Route path="/edit-profile" element={<UpdatePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/profile" element={<Profile />} />
       </Route>
