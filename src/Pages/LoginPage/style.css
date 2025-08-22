@@ -173,3 +173,52 @@
     font-size: 12px;
     color: #9b9b9b;
 }
+
+/* Password wrapper with floating label */
+.input_wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.input_wrapper input {
+  width: 100%;
+  border: 1.5px solid #000;
+  border-radius: 5px;
+  height: 45px;
+  padding: 12px 40px 12px 13px; /* space for icon */
+  font-size: 14px;
+  outline: none;
+}
+
+.input_wrapper label {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #9b9b9b;
+  pointer-events: none;
+  transition: 0.2s ease all;
+}
+
+/* Move label up when focused or value present */
+.input_wrapper.focused label {
+  top: -8px;
+  left: 10px;
+  font-size: 12px;
+  background: #fff;
+  padding: 0 4px;
+  color: #4184f3;
+}
+
+/* Eye icon styling */
+.toggle_password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+}
