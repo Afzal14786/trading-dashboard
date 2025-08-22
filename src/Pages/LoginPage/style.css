@@ -145,10 +145,10 @@
 
 .login_footer .login_description {
     margin-top: 15px;
-    max-width: 380px;      /* ✅ instead of fixed 400px */
-    text-align: center;    /* ✅ center-align the text */
-    line-height: 1.5;      /* ✅ improves readability */
-    padding: 0 10px;       /* ✅ avoid touching edges on small screens */
+    max-width: 380px;
+    text-align: center;
+    line-height: 1.5;
+    padding: 0 10px;
 }
 
 .login_footer .login_description p {
@@ -174,7 +174,7 @@
     color: #9b9b9b;
 }
 
-/* Password wrapper with floating label */
+
 .input_wrapper {
   position: relative;
   width: 100%;
@@ -186,7 +186,7 @@
   border: 1.5px solid #000;
   border-radius: 5px;
   height: 45px;
-  padding: 12px 40px 12px 13px; /* space for icon */
+  padding: 12px 40px 12px 13px;
   font-size: 14px;
   outline: none;
 }
@@ -202,7 +202,7 @@
   transition: 0.2s ease all;
 }
 
-/* Move label up when focused or value present */
+
 .input_wrapper.focused label {
   top: -8px;
   left: 10px;
@@ -212,7 +212,7 @@
   color: #4184f3;
 }
 
-/* Eye icon styling */
+
 .toggle_password {
   position: absolute;
   right: 12px;
