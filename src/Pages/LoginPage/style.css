@@ -1,0 +1,175 @@
+.login_container {
+    justify-content: center;
+    align-self: center;
+    margin-top: 90px;
+    border: 1px solid #eee;
+    box-shadow: 2px 2px 2px 2px #eee;
+    height: auto;
+    width: 350px;
+    border-radius: 10px;
+}
+
+.login_page {
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.login_page .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login_page .header .user_name {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.login_page .header a {
+    text-decoration: none;
+    font-size: 15px;
+    color: #4184f3;
+    cursor: pointer;
+}
+
+.login_page .header a:hover {
+    color: #ff5722;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.login_page .profile_image_login img {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: none;
+}
+
+.login_container .login_page .password_div {
+    margin-top: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+    justify-content: center;
+}
+
+.login_page .password_div input {
+    width: 100%;
+    border: none;
+    border: 1.5px solid black;
+    border-radius: 5px;
+    height: 38px;
+    padding-left: 13px;
+    padding-right: 12px;
+}
+
+.login_page .password_div button {
+    height: 30px;
+    width: 100%;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff5722;
+    border-color: #ff5722;
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.login_container .login_page .forgot {
+    display: flex;
+    justify-content: center;
+}
+
+.login_container .login_page .forgot {
+    text-decoration: none;
+    color: #9b9b9b;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.login_container .login_page a:hover {
+    color: #ff5722;
+    cursor: pointer;
+}
+
+/* footer login */
+.login_footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4rem;
+    text-align: center; /* ensures all inner text aligns center */
+}
+
+.login_footer .logos {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.login_footer .logos img {
+    cursor: pointer;
+}
+
+.login_footer .zerodha_logo {
+    margin-top: 1.2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.login_footer .zerodha_logo img {
+    cursor: pointer;
+}
+
+.login_footer .dont_have_an_account {
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+.login_footer .dont_have_an_account a {
+    text-decoration: none;
+    color: #9b9b9b;
+    cursor: pointer;
+}
+
+.login_footer .dont_have_an_account a:hover {
+    color: #ff5722;
+    cursor: pointer;
+}
+
+.login_footer .login_description {
+    margin-top: 15px;
+    max-width: 380px;      /* ✅ instead of fixed 400px */
+    text-align: center;    /* ✅ center-align the text */
+    line-height: 1.5;      /* ✅ improves readability */
+    padding: 0 10px;       /* ✅ avoid touching edges on small screens */
+}
+
+.login_footer .login_description p {
+    color: #9b9b9b;
+    font-size: 10px;
+    margin: 0;
+}
+
+.login_footer .login_description a {
+    text-decoration: none;
+    font-size: 10px;
+    color: #9b9b9b;
+    border-bottom: 1px solid dotted;
+}
+
+.login_footer .version {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.login_footer .version p{
+    font-size: 12px;
+    color: #9b9b9b;
+}

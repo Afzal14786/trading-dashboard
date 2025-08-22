@@ -9,7 +9,7 @@ const MainLayout = () => {
 
   return (
     <div className="app-layout">
-      <Sidebar />
+      {/* <Sidebar /> */}
       <div className="main-content">
         <Outlet />
       </div>
