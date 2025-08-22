@@ -78,16 +78,12 @@ const Profile = () => {
 
                 <div className="row">
                   <div className="five column lable">PAN</div>
-                  <div className="seven column value">
-                    *215A
-                  </div>
+                  <div className="seven column value">*215A</div>
                 </div>
 
                 <div className="row">
                   <div className="five column lable">Phone</div>
-                  <div className="seven column value">
-                    *8287
-                  </div>
+                  <div className="seven column value">*8287</div>
                 </div>
 
                 <div className="row">
@@ -112,12 +108,11 @@ const Profile = () => {
                     <Link>eDIS</Link>
                   </div>
                 </div>
-
               </div>
 
               {/* right part */}
               <div className="five-col">
-                  <h3 className="page-title small section-header">
+                <h3 className="page-title small section-header">
                   Bank Account
                   <span className="section-header-right profile-link-with-img">
                     <DonutSmallIcon
@@ -130,8 +125,168 @@ const Profile = () => {
 
                 <p className="bank-row">
                   <span className="value">*6500</span>
-                  <span className="text-light text-xxsmall">BANDHAN BANK LTD</span>
+                  <span className="text-light text-xxsmall">
+                    BANDHAN BANK LTD
+                  </span>
                 </p>
+              </div>
+            </div>
+          </section>
+
+          <section className="preferences">
+            <div className="row">
+              <div className="seven_column columns">
+                <h3 className="page-title small section-header">Settings</h3>
+                <div className="row chart-preferance">
+                  <div className="five columns">Chart</div>
+                  <div className="six columns">
+                    <div className="su-radio-group">
+                      <div className="su-radio-wrap">
+                        <input
+                          type="radio"
+                          name="chartType"
+                          id="radio-168"
+                          className="su-radio"
+                          value="chartiq"
+                          defaultChecked
+                        />
+                        <label htmlFor="radio-168" className="su-radio-label">
+                          ChartIQ
+                        </label>
+                      </div>
+                        <br />
+                      <div className="su-radio-wrap">
+                        <input
+                          type="radio"
+                          name="chartType"
+                          id="radio-169"
+                          className="su-radio"
+                          value="tradingview"
+                        />
+                        <label htmlFor="radio-169" className="su-radio-label">
+                          TradingView
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="five columns">Theme</div>
+                  <div className="six columns">
+                    <div className="su-radio-group">
+                      <div className="su-radio-wrap">
+                        <input
+                          type="radio"
+                          name="theme"
+                          id="radio-171"
+                          className="su-radio"
+                          value="default"
+                          defaultChecked
+                        />
+                        <label htmlFor="radio-171" className="su-radio-label">
+                          Default
+                        </label>
+                      </div>
+
+                      <div className="su-radio-wrap">
+                        <input
+                          type="radio"
+                          name="theme"
+                          id="radio-172"
+                          className="su-radio"
+                          value="dark"
+                        />
+                        <label htmlFor="radio-172" className="su-radio-label">
+                          Dark
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Instant order updates - Now with the correct `checked` attribute */}
+                <div className="row switch-row">
+                  <div className="five columns">
+                    <span>Instant order updates</span>
+                  </div>
+                  <div className="six columns order-update-toasts">
+                    <div className="su-switch-group">
+                      <input
+                        type="checkbox"
+                        name=""
+                        id="switch-instant-update"
+                        stateon="on"
+                        stateoff="off"
+                        className="su-switch"
+                        defaultChecked
+                      />
+                      <label
+                        htmlFor="switch-instant-update"
+                        className="su-switch-control"
+                      ></label>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="row switch-row">
+                  <div className="five columns">
+                    <span>Sticky order window</span>
+                  </div>
+                  <div className="six columns order-update-toasts">
+                    <div className="su-switch-group">
+                      <input
+                        type="checkbox"
+                        name=""
+                        id="sticky-order-window"
+                        stateon="true"
+                        stateoff="false"
+                        className="su-switch"
+                        value="false"
+                      />
+                      <label
+                        htmlFor="sticky-order-window"
+                        className="su-switch-control"
+                      ></label>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="row switch-row">
+                  <div className="five columns">
+                    <span>Remember F&O order quantity</span>
+                  </div>
+                  <div className="six columns order-update-toasts">
+                    <div className="su-switch-group">
+                      <input
+                        type="checkbox"
+                        name=""
+                        id="remember-order-quantity"
+                        stateon="true"
+                        stateoff="false"
+                        className="su-switch"
+                        value="false"
+                      />
+                      <label
+                        htmlFor="remember-order-quantity"
+                        className="su-switch-control"
+                      ></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="five-col">
+                <h3 className="page-title small section-header">
+                  Sessions
+                  <Link to={"#"} className="profile_link">
+                    Clear all
+                  </Link>
+                </h3>
+                <ul>
+                  <li className="row">Kite Android</li>
+                  <li className="row">Kite Web</li>
+                  <li className="row">Console</li>
+                </ul>
               </div>
             </div>
           </section>

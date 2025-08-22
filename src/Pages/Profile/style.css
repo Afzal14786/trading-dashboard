@@ -107,7 +107,7 @@
 .row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .seven_column {
@@ -244,4 +244,191 @@
 .bank-row .text-xxsmall {
   font-size: 11px;
   letter-spacing: 0.3px;
+}
+
+/* preferences css */
+.profile .preferences {
+  margin-bottom: 80px;
+  display: block;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+.profile .preferences > .row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  width: 100%;
+}
+
+
+.profile .preferences .seven_column {
+  flex: 0 0 60%;
+  max-width: 60%;
+  padding-right: 15px;
+  box-sizing: border-box;
+}
+
+.profile .preferences .seven_column .section-header {
+  margin-bottom: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 6px;
+}
+
+
+.profile .chart-preferance .su-radio-wrap {
+  margin-bottom: 6px;
+}
+
+
+.su-radio-group .su-radio-wrap {
+  margin-right: 20px;
+  display: inline-block;
+  position: relative;
+}
+
+.su-radio-group .su-radio {
+  position: absolute;
+  opacity: 0;
+}
+
+.su-radio-group .su-radio-label {
+  cursor: pointer;
+  font-size: 14px;
+  padding-left: 20px;
+  position: relative;
+  color: #333;
+}
+
+.su-radio-group .su-radio-label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #9b9b9b;
+  border-radius: 50%;
+  background: #fff;
+  transition: all 0.2s ease;
+}
+
+
+.su-radio-group .su-radio:checked + .su-radio-label::before {
+  border: 1px solid #007bff;
+  background-color: #007bff;
+  box-shadow: inset 0 0 0 3px #fff;
+}
+
+
+.profile .preferences .seven_column .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.profile .preferences .seven_column .row .five.columns,
+.profile .preferences .seven_column .row .six.columns {
+  flex: 1;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+
+.su-switch-group {
+  display: inline-block;
+  position: relative;
+  margin: 0;
+}
+
+
+.su-switch {
+  opacity: 0;
+  position: absolute;
+}
+
+.su-switch-control {
+  width: 36px;
+  height: 18px;
+  background: #ccc;
+  border-radius: 18px;
+  position: relative;
+  display: inline-block;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+
+.su-switch-control::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+  transition: transform 0.3s;
+}
+
+.su-switch:checked + .su-switch-control {
+  background: #007bff;
+}
+
+.su-switch:checked + .su-switch-control::after {
+  transform: translateX(18px);
+}
+
+
+.profile .preferences .five-col {
+  flex: 0 0 38%;
+  max-width: 38%;
+  padding-left: 15px;
+  margin-left: auto;
+  box-sizing: border-box;
+}
+
+.profile .preferences .five-col .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 6px;
+  margin-bottom: 16px;
+}
+
+.profile .preferences .five-col ul {
+  list-style-type: disc;
+  padding-left: 18px;
+  margin-top: 10px;
+}
+
+.profile .preferences .five-col li {
+  padding: 6px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+
+.profile .preferences .five-col li.row {
+  display: list-item;
+  justify-content: initial;
+}
+
+
+.profile .preferences .row a,
+.profile .preferences .five-col a {
+  text-decoration: none;
+  font-size: 12px;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.profile .preferences .row a:hover,
+.profile .preferences .five-col a:hover {
+  color: orange;
 }
