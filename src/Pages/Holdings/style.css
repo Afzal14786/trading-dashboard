@@ -73,13 +73,12 @@
     background-color: #f3f4f6;
 }
 
-/* All other existing CSS */
 
-/* Add this new CSS to your stylesheet */
+
 .holding__header {
     display: flex;
-    align-items: center; /* Vertically aligns the items */
-    gap: 1rem; /* Adds space between the title and the dropdown */
+    align-items: center;
+    gap: 1rem;
     padding: 1.5rem 0 0 1rem;
 }
 

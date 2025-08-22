@@ -29,10 +29,10 @@
     padding-right: 20px;
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Reduced the gap here */
+    gap: 15px;
 }
 
-/* Input Wrapper for positioning */
+
 .input_wrapper {
     position: relative;
     width: 100%;
@@ -55,7 +55,6 @@
     border-color: #4184f3;
 }
 
-/* Label styling */
 .input_wrapper label {
     position: absolute;
     top: 50%;
@@ -63,10 +62,10 @@
     transform: translateY(-50%);
     color: #8c8c8c;
     font-size: 16px;
-    pointer-events: none; /* Allows clicks to pass through to the input */
+    pointer-events: none;
     transition: all 0.3s ease;
     background-color: transparent;
-    padding: 0 5px; /* Creates space for the label in the border */
+    padding: 0 5px; 
 }
 
 .input_wrapper.focused label {
@@ -111,8 +110,8 @@
 }
 
 .update_row .change_password_div .btns_divs .btns:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
-    transform: translateY(-2px); /* Lifts the button slightly */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
 }
 
 /* password tips css */

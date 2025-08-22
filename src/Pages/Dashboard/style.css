@@ -9,14 +9,14 @@
     font-family: monospace;
 }
 
-/* --- Main Information Cards Section --- */
+
 .cards__container {
     display: flex;
     gap: 2rem;
     margin: 3rem;
 }
 
-/* Card Styling for both Equity and Commodity */
+
 .card {
     display: flex;
     flex-direction: column; 
@@ -47,10 +47,10 @@
 .card__body {
     display: flex;
     align-items: flex-start;
-    padding: 1.5rem; /* Padding for the content area */
+    padding: 1.5rem;
 }
 
-/* Left side of the card */
+
 .card__left {
     line-height: 1.5;
     margin-right: 2rem;
@@ -67,7 +67,6 @@
     font-weight: 400;
 }
 
-/* Right side of the card */
 .card__right {
     display: flex;
     flex-direction: column;
@@ -84,7 +83,6 @@
     margin-top: 0.5rem;
 }
 
-/* Alignment fix for the right-side data */
 .block {
   display: flex;
   justify-content: space-between;

@@ -1,4 +1,4 @@
-/* General container styles for better presentation */
+
 .summary-container {
   padding: 2rem;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -10,7 +10,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-bottom: 2rem; /* Add space below the top bar */
+  margin-bottom: 2rem;
 }
 
 .add_fund_withdraw p {
@@ -55,13 +55,13 @@
 /* Main Funds Container */
 .funds {
   display: flex;
-  gap: 2rem; /* Controls the space between the two columns */
+  gap: 2rem;
   width: 100%;
 }
 
 /* Individual Column Styling */
 .column {
-  flex: 1; /* Each column takes up equal space */
+  flex: 1;
   background-color: #fff;
   border: 1px solid #e0e0e0;
   border-radius: 4px;
@@ -105,7 +105,7 @@
 .right_toolbar a {
   text-decoration: none;
   font-size: 14px;
-  color: #3182ce; /* Blue link color */
+  color: #3182ce;
 }
 
 .right_toolbar a:hover {
@@ -128,7 +128,7 @@
 }
 
 .table_data table tbody tr:hover {
-  opacity: 0.6; /* The row will fade to 60% opacity on hover */
+  opacity: 0.6;
 }
 
 .table_data table tbody tr {
