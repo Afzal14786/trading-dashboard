@@ -56,13 +56,13 @@
     margin-right: 2rem;
 }
 
-.title {
+.margin_title {
     font-weight: 500;
     font-size: 2.5rem;
     color: #222;
 }
 
-.lable {
+.margin_lable {
     color: #888;
     font-weight: 400;
 }
@@ -153,4 +153,66 @@
     margin-bottom: 19px;
     color: #6e6e6e;
     font-size: 14px;
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+    .cards__container {
+        flex-direction: column;
+        margin: 1.5rem;
+    }
+
+    .card__body {
+        flex-direction: column;
+    }
+
+    .card__right {
+        padding-left: 0;
+        border-left: none;
+        margin-top: 1rem;
+    }
+
+    .holding_portfolio {
+        flex-direction: column;
+    }
+
+    .common {
+        margin: 15px 20px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .user__name {
+        margin: 15px 20px;
+        font-size: 18px;
+    }
+
+    .cards__container {
+        margin: 1rem;
+        gap: 1rem;
+    }
+
+    .card {
+        font-size: 14px;
+    }
+
+    .margin_title {
+        font-size: 2rem;
+    }
+
+    .holding_image {
+        height: 80px;
+        width: 80px;
+    }
+
+    .holding__description {
+        font-size: 13px;
+        margin: 10px;
+    }
+
+    .investing__btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
 }

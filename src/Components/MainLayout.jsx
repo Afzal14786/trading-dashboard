@@ -5,7 +5,6 @@ import Sidebar from "./Sidebar";
 import "./style.css";
 
 const MainLayout = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <div className="app-layout">

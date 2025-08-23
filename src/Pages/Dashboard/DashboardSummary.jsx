@@ -22,8 +22,8 @@ const DashboardSummary = () => {
                 </div>
                 <div className="card__body">
                   <div className="card__left">
-                    <div className='title'>0</div>
-                    <div className="lable">Margin available</div>
+                    <div className='margin_title'>0</div>
+                    <div className="margin_lable">Margin available</div>
                   </div>
                   <div className="card__right">
                     <div className="block">
@@ -46,8 +46,8 @@ const DashboardSummary = () => {
                 </div>
                 <div className="card__body">
                   <div className="card__left">
-                      <div className='title'>0</div>
-                      <div className="lable">Margin available</div>
+                      <div className='margin_title'>0</div>
+                      <div className="margin_lable">Margin available</div>
                   </div>
                   <div className="card__right">
                     <div className="block">
