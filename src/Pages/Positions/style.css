@@ -1,0 +1,56 @@
+/* Holdings table */
+.position-table {
+    margin: 20px 1rem;
+    overflow-x: auto;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Table base */
+.position-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.position-table thead {
+    background: linear-gradient(90deg, #f3f4f6, #e5e7eb);
+}
+
+.position-table th {
+    padding: 14px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    color: #111827;
+    border-bottom: 2px solid #d1d5db;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.position-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+.position-table tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.position-table tbody tr:hover {
+    background-color: #f9fafb;
+    cursor: pointer;
+}
+
+/* profit and loss */
+
+.position-table td.profit {
+  color: #16a34a !important;
+}
+
+.position-table td.loss {
+  color: #dc2626 !important;
+}
