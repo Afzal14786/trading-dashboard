@@ -183,3 +183,63 @@
 .holding__nav .links:hover {
     border-bottom: 2px solid rgb(255, 166, 0);
 }
+
+/* table css */
+
+/* Holdings table */
+.holdings-table {
+    margin: 20px 1rem;
+    overflow-x: auto;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Table base */
+.holdings-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.holdings-table thead {
+    background: linear-gradient(90deg, #f3f4f6, #e5e7eb);
+}
+
+.holdings-table th {
+    padding: 14px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    color: #111827;
+    border-bottom: 2px solid #d1d5db;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.holdings-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+.holdings-table tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.holdings-table tbody tr:hover {
+    background-color: #f9fafb;
+    cursor: pointer;
+}
+
+/* profit and loss */
+
+.profit {
+    color: #16a34a;
+    font-weight: 500;
+}
+.loss {
+    color: #dc2626;
+    font-weight: 500;
+}
