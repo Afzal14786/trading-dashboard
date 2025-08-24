@@ -227,20 +227,20 @@
 
 .itemInfo {
     display: flex;
-    justify-content: flex-end; /* Align the whole block to the right */
+    justify-content: flex-end;
     align-items: center;
-    width: 150px; /* Give the container a fixed width */
+    width: 150px;
     gap: 15px;
 }
 
 .precent2 {
-    width: 70px; /* Assign a fixed width */
-    text-align: right; /* Right-align the text for number columns */
+    width: 70px;
+    text-align: right;
 }
 
 .price_list {
-    width: 80px; /* Assign a fixed width */
-    text-align: right; /* Right-align the text for number columns */
+    width: 80px;
+    text-align: right;
 }
 
 .down {
@@ -269,7 +269,7 @@ li:hover {
   align-items: center;
   justify-content: flex-end;
   padding-right: 10px;
-  gap: 8px; /* cleaner than margin-left on buttons */
+  gap: 8px;
 }
 
 .actions button {
@@ -302,7 +302,6 @@ li:hover {
   font-weight: 400;
   font-size: 0.8rem;
   border: 0.7px solid #ff5722;
-  /* removed margin-bottom */
 }
 
 /* Icons */
@@ -319,8 +318,8 @@ li:hover {
 
 .dropdown_navbar_container {
   position: absolute;
-  top: 60px; /* Adjust depending on your navbar height */
-  right: 20px; /* Push to the right edge near profile */
+  top: 60px;
+  right: 20px;
   width: 260px;
   background: #fff;
   border-radius: 12px;
@@ -413,7 +412,6 @@ li:hover {
   background: rgba(0, 0, 0, 0.05);
 }
 
-/* Logout button */
 .logout {
   display: flex;
   align-items: center;
@@ -428,7 +426,6 @@ li:hover {
   background: rgba(217, 83, 79, 0.1);
 }
 
-/* Toggle switch styling */
 .switch {
   position: relative;
   display: inline-block;
@@ -471,17 +468,21 @@ input:checked + .slider:before {
   transform: translateX(16px);
 }
 
-/* Small fade animation */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 
-/* responsiveness */ 
-
-/* ===== Sidebar base ===== */
 .sidebar {
   flex: 0 0 240px;
   transition: left 0.3s ease;
+}
+
+
+.donut-graph {
+  max-width: 80%;
+  margin-bottom: 2rem;
+  margin-left: 10px;
+  margin-right: 10px;
 }

@@ -97,13 +97,11 @@
 }
 
 .profile .header_details #avtar-id {
-    /* border: 1px solid black; */
     height: 130px;
     width: 130px;
 }
 
 /* section */
-/* Row wrapper */
 .row {
   display: flex;
   justify-content: space-between;

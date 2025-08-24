@@ -13,9 +13,7 @@ const DashboardSummary = () => {
               Hi, Md Afzal Ansari
           </div>
 
-        {/* equity and commodity information cards */}
         <div className="cards__container">
-            {/* Equity Card */}
             <div className="card">
                 <div className="card__header">
                   <PieChartOutlineIcon className='chart__icon'/> Equity
@@ -39,7 +37,6 @@ const DashboardSummary = () => {
                 </div>
             </div>
 
-            {/* Commodity Card */}
             <div className="card">
                 <div className="card__header">
                   <WaterDropIcon className='chart__icon'/> Commodity

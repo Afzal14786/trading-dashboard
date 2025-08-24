@@ -243,3 +243,10 @@
     color: #dc2626;
     font-weight: 500;
 }
+
+/* graph css */
+.graph {
+    max-width: 80%;
+    margin-bottom: 1.5rem;
+    margin-left: 2rem;
+}

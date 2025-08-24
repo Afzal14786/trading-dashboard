@@ -19,7 +19,7 @@ const Funds = () => {
 
   return (
     <div className="summary summary-container">
-      {/* Top bar with buttons */}
+      
       <div className="add_fund_withdraw">
         <p>Instant, zero-cost fund transfers with</p>
         <img src="/images/UPI.svg" alt="upi svg" className="upi__svg" />
@@ -27,7 +27,6 @@ const Funds = () => {
         <button className="withdraw_btn">Withdraw</button>
       </div>
 
-      {/* Main funds section */}
       <div className="funds">
         {/* Equity Column */}
         <div className="column">
@@ -43,7 +42,7 @@ const Funds = () => {
               <a href="#">Help</a>
             </span>
           </div>
-          {/* Mapping over data to create rows */}
+          
           {/* data table */}
           <div className="table_data">
             <table className="table">
@@ -183,12 +182,12 @@ const Funds = () => {
           </div>
         </div>
 
-        {/* Commodity Column */}
+        
         <div className="column">
           <div className="funds_title">
             <span className="left_section">
               <span className="icon-wrapper">
-                <WaterDropIcon /> {/* Changed icon for Commodity */}
+                <WaterDropIcon /> 
               </span>
               <span className="name">Commodity</span>
             </span>
@@ -197,7 +196,7 @@ const Funds = () => {
               <a href="#">Help</a>
             </span>
           </div>
-          {/* Reusing the same data mapping for the second column */}
+          
           <div className="table_data">
             <table className="table">
               <tbody>

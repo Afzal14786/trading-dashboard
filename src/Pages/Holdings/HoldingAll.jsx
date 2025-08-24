@@ -1,20 +1,39 @@
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
+import VerticalChart from "../../charts/VerticalChart"
 import "./style.css";
 
 const HoldingAll = () => {
-  
   const [allHoldings, setAllHoldings] = useState([]);
-  
-  useEffect(()=> {
-    axios.get("http://localhost:5174/api/v1/holdings/allHoldings").then((res)=>{
-      setAllHoldings(res.data);
-    })
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:5174/api/v1/holdings/allHoldings")
+      .then((res) => {
+        setAllHoldings(res.data);
+      });
   }, []);
 
   const hasHoldings = allHoldings && allHoldings.length > 0;
+
+  const labels = allHoldings.map((subArray) => subArray["name"]);
+
+  const data2 = {
+  labels: allHoldings.map((stock) => stock.name),
+  datasets: [
+    {
+      label: "Stock Prices",
+      data: allHoldings.map((stock) => stock.price),
+      borderColor: "rgba(255, 99, 132, 1)",
+      backgroundColor: "rgba(255, 99, 132, 0.5)",
+      borderWidth: 2,
+      borderRadius: 10,
+      borderSkipped: false,
+    },
+  ],
+};
+
 
   return (
     <>
@@ -24,7 +43,6 @@ const HoldingAll = () => {
 
       {/* If holdings are empty */}
       {!hasHoldings ? (
-        
         <div className="holding__info">
           <img
             src="/images/holdings__bag__images.svg"
@@ -46,7 +64,7 @@ const HoldingAll = () => {
         </div>
       ) : (
         // If holdings exist → render table
-        
+
         <div className="holdings-table">
           <table>
             <thead>
@@ -87,6 +105,11 @@ const HoldingAll = () => {
           </table>
         </div>
       )}
+
+      {/* this is rhe graph section */}
+      <div className="graph">
+        <VerticalChart data={data2}/>
+      </div>
     </>
   );
 };

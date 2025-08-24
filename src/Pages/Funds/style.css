@@ -45,21 +45,20 @@
 }
 
 .add_btn {
-  background-color: #38a169; /* Green */
+  background-color: #38a169;
 }
 
 .withdraw_btn {
-  background-color: #3182ce; /* Blue */
+  background-color: #3182ce;
 }
 
-/* Main Funds Container */
 .funds {
   display: flex;
   gap: 2rem;
   width: 100%;
 }
 
-/* Individual Column Styling */
+
 .column {
   flex: 1;
   background-color: #fff;
@@ -69,7 +68,7 @@
   box-sizing: border-box;
 }
 
-/* Column Title Section */
+
 .funds_title {
   display: flex;
   justify-content: space-between;
