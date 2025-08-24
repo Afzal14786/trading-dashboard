@@ -1,8 +1,19 @@
-import { positions } from "../../data/data";
+import {useEffect, useState} from "react";
+import axios from "axios";
+
 import "./style.css";
 
 const Positions = () => {
-  const hasPositions = positions && positions.length > 0;
+
+  const [allPositions, setAllPositions] = useState([]);
+
+  useEffect(()=> {
+    axios.get("http://localhost:5174/api/v1/positions/allPositions").then((res)=> {
+      setAllPositions(res.data);
+    })
+  }, []);
+
+  const hasPositions = allPositions && allPositions.length > 0;
 
   return (
     <>
@@ -44,7 +55,7 @@ const Positions = () => {
             </thead>
 
             <tbody>
-              {positions.map((position, index) => (
+              {allPositions.map((position, index) => (
                 <tr key={index}>
                   <td>{position.product}</td>
                   <td>{position.name}</td>

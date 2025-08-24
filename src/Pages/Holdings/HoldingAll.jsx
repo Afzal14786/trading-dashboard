@@ -1,12 +1,25 @@
+import {useState, useEffect} from "react";
+import axios from "axios";
+
 import "./style.css";
-import { holdings } from "../../data/data";
 
 const HoldingAll = () => {
-  const hasHoldings = holdings && holdings.length > 0;
+  
+  const [allHoldings, setAllHoldings] = useState([]);
+  
+  useEffect(()=> {
+    axios.get("http://localhost:5174/api/v1/holdings/allHoldings").then((res)=>{
+      setAllHoldings(res.data);
+    })
+
+  }, []);
+
+  const hasHoldings = allHoldings && allHoldings.length > 0;
+
   return (
     <>
       <p className="title">
-        Holdings {hasHoldings ? `(${holdings.length})` : ""}
+        Holdings {hasHoldings ? `(${allHoldings.length})` : ""}
       </p>
 
       {/* If holdings are empty */}
@@ -50,7 +63,7 @@ const HoldingAll = () => {
             </thead>
 
             <tbody>
-              {holdings.map((stock, index) => (
+              {allHoldings.map((stock, index) => (
                 <tr key={index}>
                   <td>{stock.name}</td>
                   <td>{stock.qty}</td>
