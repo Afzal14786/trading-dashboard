@@ -1,68 +1,319 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 import "./style.css";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import { auth } from "../../firebase";
 
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+
+const API_BASE_URL = "http://localhost:5174/api/v1/user";
+
+const isTenDigitPhone = (input) => /^\d{10}$/.test(input);
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [isPhoneFocused, setIsPhoneFocused] = useState(false);
+  const [isIdentifierFocused, setIsIdentifierFocused] = useState(false);
   const [isPasswordFocused, setIsPasswordFocused] = useState(false);
-  const [phoneOrUserId, setPhoneOrUserId] = useState("");
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
 
+  const [currentStep, setCurrentStep] = useState(1);
+  const [otp, setOtp] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [authType, setAuthType] = useState("");
+
+  const navigate = useNavigate();
+  const [confirmationResult, setConfirmationResult] = useState(null);
+  const recaptchaContainerRef = useRef(null);
+
+  // Check if already logged in
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      navigate("/");
+    }
+  }, [navigate]);
+
+  // Setup reCAPTCHA when phone number is valid
+  useEffect(() => {
+    if (isTenDigitPhone(identifier) && !window.recaptchaVerifier) {
+      try {
+        window.recaptchaVerifier = new RecaptchaVerifier(
+          auth,
+          "recaptcha-container",
+          {
+            size: "invisible",
+            callback: () => {
+              console.log("reCAPTCHA verified");
+            },
+            "expired-callback": () => {
+              toast.error("reCAPTCHA expired. Please reload the page.");
+            },
+          }
+        );
+      } catch (err) {
+        console.error("Recaptcha init error:", err);
+      }
+    }
+    return () => {
+      if (window.recaptchaVerifier) {
+        window.recaptchaVerifier.clear();
+        window.recaptchaVerifier = null;
+      }
+    };
+  }, [identifier]);
+
+  const sendPhoneOtp = async () => {
+    try {
+      const appVerifier = window.recaptchaVerifier;
+      const fullPhoneNumber = `+91${identifier}`;
+
+      const result = await signInWithPhoneNumber(
+        auth,
+        fullPhoneNumber,
+        appVerifier
+      );
+      setConfirmationResult(result);
+      toast.success("OTP sent to your phone number.");
+    } catch (err) {
+      console.error("Firebase phone auth error:", err);
+      toast.error("Error sending OTP. Please check your number.");
+      if (window.recaptchaVerifier) {
+        window.recaptchaVerifier.clear();
+        window.recaptchaVerifier = null;
+      }
+    }
+  };
+
+  const handleLogin = async () => {
+    if (!identifier || !password) {
+      return toast.error("All fields are required.");
+    }
+
+    setIsLoading(true);
+    try {
+      const response = await axios.post(`${API_BASE_URL}/login`, {
+        identifier,
+        password,
+      });
+
+      if (response.data.success) {
+        setAuthType(response.data.auth_type);
+
+        if (response.data.auth_type === "email") {
+          toast.success(response.data.message);
+        }
+
+        if (response.data.auth_type === "phone") {
+          await window.recaptchaVerifier.render();
+          sendPhoneOtp();
+        }
+
+        setCurrentStep(2);
+      }
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Login failed.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleOtpVerify = async () => {
+    if (otp.length !== 6) {
+      return toast.error("OTP must be 6 digits.");
+    }
+
+    setIsLoading(true);
+    try {
+      let response;
+      if (isTenDigitPhone(identifier)) {
+        if (!confirmationResult) {
+          toast.error("Something went wrong with phone verification.");
+          return;
+        }
+        await confirmationResult.confirm(otp);
+        response = await axios.post(`${API_BASE_URL}/login/verify-otp`, {
+          identifier,
+          otp: "verified",
+        });
+      } else {
+        response = await axios.post(`${API_BASE_URL}/login/verify-otp`, {
+          identifier,
+          otp,
+        });
+      }
+
+      if (response.data.success) {
+        toast.success(response.data.message);
+
+        const { accessToken } = response.data.data.tokens;
+        localStorage.setItem("accessToken", accessToken);
+
+        navigate("/", {
+          state: { userData: response.data.data.user },
+        });
+      }
+    } catch (err) {
+      toast.error(err.response?.data?.message || "OTP verification failed.");
+      console.error("Verification error:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleResendOtp = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      if (isTenDigitPhone(identifier)) {
+        await window.recaptchaVerifier.render();
+        sendPhoneOtp();
+      } else {
+        await axios.post(`${API_BASE_URL}/login`, { identifier, password });
+        toast.success("New OTP sent to your email.");
+      }
+    } catch {
+      toast.error("Failed to resend OTP.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleLoginOrOtp = (e) => {
+    e.preventDefault();
+    if (currentStep === 1) {
+      handleLogin();
+    } else {
+      handleOtpVerify();
+    }
+  };
+
   return (
-    <div className="login_container_new">
-      <div className="login_page_new">
-        <div className="logo_container">
-          {/* Logo similar to the image */}
-          <img src="kite-logo.svg" alt="Kite Logo" className="kite_logo" />
-        </div>
-        
-        <h2 className="login_title">Login to Kite</h2>
+    <div className="main_page_container">
+      <div className="login_container_new">
+        <form onSubmit={handleLoginOrOtp} className="login_page_new">
+          <div className="logo_container">
+            <img src="kite-logo.svg" alt="Kite Logo" className="kite_logo" />
+          </div>
 
-        {/* Phone or User ID field */}
-        <div className="input_wrapper_new">
-          <label htmlFor="phone_userid" className={isPhoneFocused || phoneOrUserId ? "floated" : ""}>
-            Phone or User ID
-          </label>
-          <input
-            type="text"
-            id="phone_userid"
-            className="input_field"
-            value={phoneOrUserId}
-            onChange={(e) => setPhoneOrUserId(e.target.value)}
-            onFocus={() => setIsPhoneFocused(true)}
-            onBlur={() => setIsPhoneFocused(false)}
-          />
-        </div>
+          <h2 className="login_title">Login to Kite</h2>
 
-        {/* Password field with floating label and toggle */}
-        <div className="input_wrapper_new">
-          <label htmlFor="password" className={isPasswordFocused || password ? "floated" : ""}>
-            Password
-          </label>
-          <input
-            type={showPassword ? "text" : "password"}
-            id="password"
-            className="input_field"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            onFocus={() => setIsPasswordFocused(true)}
-            onBlur={() => setIsPasswordFocused(false)}
-          />
-          <span
-            className="toggle_password_new"
-            onClick={() => setShowPassword(!showPassword)}
-          >
-            {showPassword ? <VisibilityOffIcon/> : <VisibilityIcon/>}
-          </span>
-        </div>
+          {currentStep === 1 ? (
+            <>
+              {/* Identifier */}
+              <div className="input_wrapper_new">
+                <label
+                  htmlFor="identifier"
+                  className={isIdentifierFocused || identifier ? "floated" : ""}
+                >
+                  Phone or User ID
+                </label>
+                <input
+                  type="text"
+                  id="identifier"
+                  className="input_field"
+                  value={identifier}
+                  onChange={(e) => setIdentifier(e.target.value)}
+                  onFocus={() => setIsIdentifierFocused(true)}
+                  onBlur={() => setIsIdentifierFocused(false)}
+                />
+              </div>
 
-        <button className="login_btn_new">Login</button>
-        <Link className="forgot_link">Forgot user ID or password?</Link>
+              {/* Password */}
+              <div className="input_wrapper_new">
+                <label
+                  htmlFor="password"
+                  className={isPasswordFocused || password ? "floated" : ""}
+                >
+                  Password
+                </label>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  className="input_field"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  onFocus={() => setIsPasswordFocused(true)}
+                  onBlur={() => setIsPasswordFocused(false)}
+                />
+                <span
+                  className="toggle_password_new"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                </span>
+              </div>
+
+              <button type="submit" className="login_btn_new" disabled={isLoading}>
+                {isLoading ? "Loading..." : "Login"}
+              </button>
+              <Link to="#" className="forgot_link">
+                Forgot user ID or password?
+              </Link>
+            </>
+          ) : (
+            <>
+              {/* OTP Step */}
+              <h2 className="login_title_otp">OTP</h2>
+              <p className="otp_sent_message">
+                An OTP has been sent to your registered{" "}
+                {authType === "email" ? "email." : "phone number."}
+              </p>
+              <div className="input_wrapper_new">
+                <input
+                  type="text"
+                  id="otp"
+                  className="input_field"
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value)}
+                  maxLength={6}
+                />
+              </div>
+              <button type="submit" className="login_btn_new" disabled={isLoading}>
+                {isLoading ? "Verifying..." : "Verify OTP"}
+              </button>
+              <Link to="#" className="forgot_link" onClick={handleResendOtp}>
+                Resend OTP
+              </Link>
+            </>
+          )}
+        </form>
       </div>
+
+      {/* Footer Section */}
+      <footer className="login_footer_new">
+        <div className="footer_apps">
+          <img src="/images/playstore.svg" alt="play store" className="footer_icon" />
+          <img src="/images/app_store.svg" alt="apple logo" className="footer_icon" />
+        </div>
+
+        <div className="footer_zerodha_logo">
+          <img src="/images/zerodha-logo.svg" alt="zerodha logo" className="footer_logo" />
+        </div>
+
+        <div className="footer_signup_link">
+          <Link to="/signup" className="footer_link">
+            Don&apos;t have an account? Signup now!
+          </Link>
+        </div>
+
+        <div className="footer_legal">
+          <p>
+            Zerodha Broking Limited: Member of <Link to="#">NSE</Link>,{" "}
+            <Link to="#">BSE</Link> – SEBI Reg. no. INZ000031633,{" "}
+            <Link to="#">CDSL</Link> – <Link to="#">SEBI</Link> Reg. no. IN-DP-431-2019 |{" "}
+            <Link to="#">Smart Online Dispute Resolution</Link> |{" "}
+            <Link to="#">SEBI SCORES</Link>
+          </p>
+        </div>
+      </footer>
+
+      {/* Invisible Recaptcha */}
+      <div id="recaptcha-container" ref={recaptchaContainerRef} style={{ display: "none" }} />
     </div>
   );
 };

@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
+
 import { PersonAddAlt, Logout } from "@mui/icons-material";
 import PaidIcon from "@mui/icons-material/Paid";
 import DonutLargeIcon from "@mui/icons-material/DonutLarge";
@@ -16,6 +19,7 @@ const DashboardNavbar = () => {
 
   const dropdownRef = useRef(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const handleNavClick = (index) => {
     setSelectedMenu(index);
@@ -25,7 +29,6 @@ const DashboardNavbar = () => {
     setSelectProfile((prev) => !prev);
   };
 
-  
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -44,9 +47,40 @@ const DashboardNavbar = () => {
 
   const activeClass = "selected";
 
+  // handle logout 
+  const handleLogout = async () => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) {
+      toast.error("You are already logged out.");
+      navigate("/login");
+      return;
+    }
+
+    try {
+      await axios.post(
+        "http://localhost:5174/api/v1/user/logout",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      toast.success("Logged out successfully!");
+    } catch (err) {
+      toast.error("Logout failed on the server.");
+      console.error("Logout API Error:", err);
+    } finally {
+      // Clear tokens from local storage regardless of API response
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      // Redirect to the login page
+      navigate("/login");
+    }
+  };
+
   return (
     <div className="menu-navbar-container">
-      {/* mention logo here */}
       <Link to={"/"}>
         <img
           src="/kite-logo.svg"
@@ -66,7 +100,6 @@ const DashboardNavbar = () => {
               Dashboard
             </Link>
           </li>
-
           <li>
             <Link
               to={"/orders"}
@@ -76,7 +109,6 @@ const DashboardNavbar = () => {
               Orders
             </Link>
           </li>
-
           <li>
             <Link
               to={"/holdings"}
@@ -86,7 +118,6 @@ const DashboardNavbar = () => {
               Holdings
             </Link>
           </li>
-
           <li>
             <Link
               to={"/positions"}
@@ -96,7 +127,6 @@ const DashboardNavbar = () => {
               Positions
             </Link>
           </li>
-
           <li>
             <Link
               to={"/funds"}
@@ -124,16 +154,13 @@ const DashboardNavbar = () => {
                     <span className="user_name">Md Afzal Ansari</span>
                     <span className="user_email">mdafzal14777@gmail.com</span>
                   </Link>
-
                   <Link to={"/update_profile"}>
                     <div className="edit_icon">
                       <EditIcon />
                     </div>
                   </Link>
                 </div>
-
                 <hr />
-
                 <div className="privacy-mode">
                   <span>Privacy mode</span>
                   <label className="switch">
@@ -142,44 +169,34 @@ const DashboardNavbar = () => {
                   </label>
                 </div>
               </div>
-
               <hr />
-
               <div className="dropdown_options">
                 <Link to={""}>
                   <DonutLargeIcon /> <span>Console</span>
                 </Link>
-
                 <Link to={""}>
                   <PaidIcon /> <span>Icon</span>
                 </Link>
-
                 <Link to={"/"}>
                   <SupportIcon /> <span>Support</span>
                 </Link>
-
                 <Link to={"/"}>
                   <PersonAddIcon /> <span>Icon</span>
                 </Link>
               </div>
-
               <hr />
-
               <div className="support_links">
                 <Link to={"/support"}>
                   <KeyboardCommandKeyIcon />
                   <span>Keyboard Shortcuts</span>
                 </Link>
-
                 <Link to={"/"}>
                   <PersonAddAlt />
                   <span>User Manual</span>
                 </Link>
               </div>
-
               <hr />
-
-              <div className="logout">
+              <div className="logout" onClick={handleLogout}>
                 <Logout /> <span>Logout</span>
               </div>
             </div>

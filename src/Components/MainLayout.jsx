@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
-import Sidebar from "./Sidebar";
-
-import "./style.css";
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import Sidebar from "./Sidebar"
 
 const MainLayout = () => {
-
-  return (
-    <div className="app-layout">
-      <Sidebar />
-      <div className="main-content">
-        <Outlet />
-      </div>
-    </div>
-  );
+    return (
+        <div>
+            <header>
+                <Sidebar/>
+            </header>
+            
+            <main>
+                <Outlet />
+            </main>
+        </div>
+    );
 };
 
 export default MainLayout;

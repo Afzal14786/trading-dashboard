@@ -1,122 +1,200 @@
-/* New main container for centering the form */
+/*
+ * This updated CSS file uses a flexbox layout for the entire body
+ * to correctly center the content and position the footer.
+ */
+
+/* Main container for the entire page */
+.main_page_container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* This is the container for the login card, centered in the viewport */
 .login_container_new {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1; /* This pushes the footer to the bottom */
+  width: 100%;
 }
 
 /* Styles for the login card */
 .login_page_new {
-    width: 380px;
-    padding: 2.5rem;
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  width: 380px;
+  padding: 2.5rem;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  /* Removed margin-bottom here as it will be handled by the layout */
+  margin-bottom: 0;
 }
 
 .login_title {
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: #444;
-    margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 2rem;
 }
 
 /* Logo styling */
 .logo_container {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .kite_logo {
-    height: 3rem;
-    width: auto;
+  height: 3rem;
+  width: auto;
 }
 
 /* Floating label input styles */
 .input_wrapper_new {
-    position: relative;
-    margin-bottom: 1.5rem;
+  position: relative;
+  margin-bottom: 1.5rem;
 }
 
 .input_field {
-    width: 100%;
-    height: 48px;
-    padding: 1rem 1.2rem;
-    font-size: 1rem;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  height: 48px;
+  padding: 1rem 1.2rem;
+  font-size: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .input_field:focus {
-    border-color: #4184f3;
-    box-shadow: 0 0 0 2px rgba(65, 132, 243, 0.2);
+  border-color: #4184f3;
+  box-shadow: 0 0 0 2px rgba(65, 132, 243, 0.2);
 }
 
 .input_wrapper_new label {
-    position: absolute;
-    top: 50%;
-    left: 1rem;
-    transform: translateY(-50%);
-    color: #999;
-    font-size: 0.9rem;
-    pointer-events: none;
-    transition: 0.2s ease-in-out;
-    background-color: #fff;
-    padding: 0 0.5rem;
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 0.9rem;
+  pointer-events: none;
+  transition: 0.2s ease-in-out;
+  background-color: #fff;
+  padding: 0 0.5rem;
 }
 
 .input_wrapper_new label.floated {
-    top: 0;
-    font-size: 0.75rem;
-    color: #4184f3;
-    transform: translateY(-50%);
+  top: 0;
+  font-size: 0.75rem;
+  color: #4184f3;
+  transform: translateY(-50%);
 }
 
 .input_wrapper_new .toggle_password_new {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #888;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #888;
 }
 
 /* Login button styling */
 .login_btn_new {
-    width: 100%;
-    padding: 0.8rem;
-    font-size: 1rem;
-    font-weight: 500;
-    color: #fff;
-    background-color: #ff5722;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    margin-top: 1rem;
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  background-color: #ff5722;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 1rem;
 }
 
 .login_btn_new:hover {
-    background-color: #e54b1f;
+  background-color: #e54b1f;
 }
 
 /* "Forgot" link styling */
 .forgot_link {
-    display: block;
-    margin-top: 1.5rem;
-    font-size: 0.9rem;
-    color: #4184f3;
-    text-decoration: none;
-    transition: color 0.2s ease;
+  display: block;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #4184f3;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .forgot_link:hover {
-    color: #ff5722;
+  color: #ff5722;
 }
 
+/* New footer styles */
+.login_footer_new {
+  /* Removed fixed position to allow flexbox to handle the layout */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px 0;
+  background-color: #f5f5f5;
+  margin-top: auto;
+  margin-bottom: 2rem;
+}
+
+.footer_apps {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.footer_apps .footer_icon {
+  height: 20px;
+  width: auto;
+  cursor: pointer;
+}
+
+.footer_zerodha_logo {
+  margin-bottom: 5px;
+}
+
+.footer_zerodha_logo .footer_logo {
+  height: 16px;
+  width: auto;
+}
+
+.footer_signup_link {
+  font-size: 0.7rem;
+  margin-bottom: 5px;
+}
+
+.footer_signup_link .footer_link {
+  text-decoration: none;
+  color: #999;
+  transition: color 0.2s ease;
+}
+
+.footer_signup_link .footer_link:hover {
+  color: #ff5722;
+}
+
+.footer_legal {
+  max-width: 500px;
+  font-size: 0.6rem;
+  color: #999;
+  line-height: 1.2;
+  padding: 0 10px;
+}
+
+.footer_legal a {
+  color: #999;
+  text-decoration: none;
+  border-bottom: 1px dotted #999;
+}
