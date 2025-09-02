@@ -1,9 +1,74 @@
 import { Link } from "react-router-dom";
 import DonutSmallIcon from "@mui/icons-material/DonutSmall";
-
+import { useEffect, useState, useRef } from "react";
+import { toast } from "react-toastify";
+import api from "../../api/api.js";
 import "./style.css";
 
 const Profile = () => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [showSupportCode, setShowSupportCode] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef(null);
+
+  // Fetch user profile
+  useEffect(() => {
+    const getProfileData = async () => {
+      try {
+        const response = await api.get("/user/profile");
+        setUser(response.data.data);
+      } catch (err) {
+        console.error("Error fetching profile:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getProfileData();
+  }, []);
+
+  // Upload profile image
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("profile", file);
+
+    try {
+      setUploading(true);
+      const response = await api.post(`/upload`, formData, {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      if (response.data.success) {
+        setUser((prev) => ({ ...prev, profile: response.data.profileUrl }));
+        toast.success("Profile photo updated successfully 🎉");
+      } else {
+        toast.error("Image upload failed");
+      }
+    } catch (err) {
+      toast.error("Error uploading image");
+      console.error(err);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const maskValue = (value) => {
+    if (!value) return "";
+    const str = value.toString();
+    return "*" + str.slice(-4);
+  };
+
+  if (loading) return <p>Loading profile...</p>;
+  if (!user) return <p>Couldn’t load profile data.</p>;
+
   return (
     <>
       <div className="summary profile_container">
@@ -27,16 +92,31 @@ const Profile = () => {
             <div>
               <div className="avtar_wrapper">
                 <div id="avtar-id">
-                  <img src="/images/profile_test.jpg" alt="profile_image" />
+                  <img
+                    src={user?.profile || "/images/profile_test.jpg"}
+                    alt="profile_image"
+                  />
                 </div>
                 <div className="context_menu">
-                  <Link>Change photo</Link>
+                  <button
+                    onClick={() => fileInputRef.current.click()}
+                    disabled={uploading}
+                  >
+                    {uploading ? "Uploading..." : "Change photo"}
+                  </button>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    ref={fileInputRef}
+                    style={{ display: "none" }}
+                    onChange={handleFileChange}
+                  />
                 </div>
               </div>
             </div>
 
             <div>
-              <h2 className="full_name">Md Afzal Ansari</h2>
+              <h2 className="full_name">{user.name}</h2>
             </div>
           </div>
 
@@ -60,37 +140,53 @@ const Profile = () => {
                   <div className="five column lable">Support Code</div>
                   <div className="seven column value">
                     <span className="section-header-right profile-link-with-img">
-                      <DonutSmallIcon
-                        className="console_icon"
-                        style={{ height: "11px", width: "11px" }}
-                      />
-                      <Link>View</Link>
+                      {showSupportCode ? (
+                        <span>{user.supportCode || "N/A"}</span>
+                      ) : (
+                        <span className="section-header-right profile-link-with-img">
+                          <DonutSmallIcon
+                            className="console_icon"
+                            style={{ height: "11px", width: "11px" }}
+                          />
+                          <Link
+                            to="#"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setShowSupportCode(true);
+                            }}
+                          >
+                            View
+                          </Link>
+                        </span>
+                      )}
                     </span>
                   </div>
                 </div>
 
                 <div className="row">
                   <div className="five column lable">E-mail</div>
-                  <div className="seven column value">
-                    mdafzal14777@gmail.com
-                  </div>
+                  <div className="seven column value">{user.email}</div>
                 </div>
 
                 <div className="row">
                   <div className="five column lable">PAN</div>
-                  <div className="seven column value">*215A</div>
+                  <div className="seven column value">
+                    {maskValue(user.panCardNumber)}
+                  </div>
                 </div>
 
                 <div className="row">
                   <div className="five column lable">Phone</div>
-                  <div className="seven column value">*8287</div>
+                  <div className="seven column value">
+                    {maskValue(user.phone)}
+                  </div>
                 </div>
 
                 <div className="row">
                   <div className="five column lable">Demat (BO)</div>
                   <div className="seven column value">
                     <span className="value dp-ids-list">
-                      <span className="value">1208160180663367</span>
+                      <span className="value">{user.dematNumber}</span>
                     </span>
                   </div>
                 </div>
@@ -98,7 +194,9 @@ const Profile = () => {
                 <div className="row">
                   <div className="five column lable">Segments</div>
                   <div className="seven column value">
-                    <Link>MF, BSE, NSE</Link>
+                    {Array.isArray(user.segments) && user.segments.length > 0
+                      ? user.segments.join(", ")
+                      : "N/A"}
                   </div>
                 </div>
 
@@ -124,9 +222,11 @@ const Profile = () => {
                 </h3>
 
                 <p className="bank-row">
-                  <span className="value">*6500</span>
+                  <span className="value">
+                    {maskValue(user.bankAccountNumber)}
+                  </span>
                   <span className="text-light text-xxsmall">
-                    BANDHAN BANK LTD
+                    {user.bankName}
                   </span>
                 </p>
               </div>
@@ -154,7 +254,7 @@ const Profile = () => {
                           ChartIQ
                         </label>
                       </div>
-                        <br />
+                      <br />
                       <div className="su-radio-wrap">
                         <input
                           type="radio"

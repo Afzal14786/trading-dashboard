@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { toast } from "react-toastify";
+import api from "../api/api";
 
 import { PersonAddAlt, Logout } from "@mui/icons-material";
 import PaidIcon from "@mui/icons-material/Paid";
@@ -16,6 +16,7 @@ import "./style.css";
 const DashboardNavbar = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
   const [selectProfile, setSelectProfile] = useState(false);
+  const [user, setUser] = useState(null);
 
   const dropdownRef = useRef(null);
   const location = useLocation();
@@ -36,9 +37,7 @@ const DashboardNavbar = () => {
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   useEffect(() => {
@@ -47,37 +46,32 @@ const DashboardNavbar = () => {
 
   const activeClass = "selected";
 
-  // handle logout 
   const handleLogout = async () => {
-    const accessToken = localStorage.getItem("accessToken");
-    if (!accessToken) {
-      toast.error("You are already logged out.");
-      navigate("/login");
-      return;
-    }
-
     try {
-      await axios.post(
-        "http://localhost:5174/api/v1/user/logout",
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
+      await api.post("/user/logout");
       toast.success("Logged out successfully!");
     } catch (err) {
       toast.error("Logout failed on the server.");
       console.error("Logout API Error:", err);
     } finally {
-      // Clear tokens from local storage regardless of API response
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
-      // Redirect to the login page
       navigate("/login");
     }
   };
+
+  // fetching the data from backend 
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await api.get("/user/profile");
+        setUser(response.data.data); // save the data 
+      } catch (err) {
+        console.error("Error fetching user data:", err);
+      }
+    };
+    fetchUser();
+  }, []);
 
   return (
     <div className="menu-navbar-container">
@@ -141,18 +135,21 @@ const DashboardNavbar = () => {
         <div className="profile-wrapper" ref={dropdownRef}>
           <div className="user-profile" onClick={handleProfile}>
             <div className="avatar">
-              <img src="/images/profile_test.jpg" alt="profile_image" />
+              <img
+                src={user?.profile || "user.png"}
+                alt="profile_image"
+              />
             </div>
-            <span>CKV524</span>
+            <span>{user?.userId || "UserId"}</span>
           </div>
 
-          {selectProfile && (
+          {selectProfile && user && (
             <div className="dropdown_navbar_container">
               <div className="dropdown_header">
                 <div className="user_information">
                   <Link to={"/profile"}>
-                    <span className="user_name">Md Afzal Ansari</span>
-                    <span className="user_email">mdafzal14777@gmail.com</span>
+                    <span className="user_name">{user?.name}</span>
+                    <span className="user_email">{user?.email}</span>
                   </Link>
                   <Link to={"/update_profile"}>
                     <div className="edit_icon">
