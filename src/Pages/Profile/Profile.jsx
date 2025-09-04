@@ -38,7 +38,7 @@ const Profile = () => {
 
     try {
       setUploading(true);
-      const response = await api.post(`/upload`, formData, {
+      const response = await api.post(`/user/profile/upload`, formData, {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -108,7 +108,14 @@ const Profile = () => {
                     type="file"
                     accept="image/*"
                     ref={fileInputRef}
-                    style={{ display: "none" }}
+                    style={{
+                      opacity: 0,
+                      position: "absolute",
+                      zIndex: -1,
+                      pointerEvents: "none",
+                      width: "1px",
+                      height: "1px",
+                    }}
                     onChange={handleFileChange}
                   />
                 </div>
