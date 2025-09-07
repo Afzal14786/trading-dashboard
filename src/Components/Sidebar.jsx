@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import "./style.css";
+import "./sidebar.css";
 import { Search, ArrowDownUp } from "lucide-react";
 import {Link} from "react-router-dom"
 import { WatchListItem } from "./WatchListItem";

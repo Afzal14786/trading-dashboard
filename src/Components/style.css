@@ -139,107 +139,6 @@
     cursor: pointer;
 }
 
-/* watchlist */
-.watchlist-container {
-    width: 35%;
-    height: 100vh;
-    position: fixed;
-    margin-top: 10px;
-    left: 0;
-    border-right: 1px solid gray;
-    overflow-y: auto;
-}
-
-.search-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 0 15px 15px 15px;
-    padding: 5px 10px;
-    justify-content: space-between;
-    border: 1px solid black;
-    border-radius: 10px;
-    color: gray;
-}
-
-/* implementing the search option  */
-.search-results {
-  max-height: 300px;
-  overflow-y: auto;
-  border-top: 1px solid #eee;
-}
-
-.search-item {
-  padding: 10px 12px;
-  border-bottom: 1px solid #f0f0f0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.search-item:hover {
-  background-color: #f9f9f9;
-}
-
-.exchange {
-  font-size: 13px;
-  color: white;
-  background-color: #2196f3;
-  padding: 2px 8px;
-  border-radius: 4px;
-}
-
-.search-input {
-    flex: 1;
-    border: none;
-    background-color: transparent;
-    outline: none;
-    border-left: 1px solid gray;
-    padding-left: 15px;
-
-}
-
-.search-icon-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-}
-
-.search-icon {
-    cursor: pointer;
-}
-
-.sort-button {
-    cursor: pointer;
-    border: none;
-    border-radius: 20%;
-    margin-left: 8px;
-    margin-right: 10px;
-    background:none;
-    background-color: transparent;
-}
-
-.sort-button .sort-icon {
-    height: 20px;
-    color: gray;
-}
-
-.watchlist-size {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 5px 25px;
-    font-size: 15px;
-}
-
-.new-group a{
-    text-decoration: none;
-    cursor: pointer;
-}
-
 /* watch list items css */
 
 .item {
@@ -506,11 +405,4 @@ input:checked + .slider:before {
 .sidebar {
   flex: 0 0 240px;
   transition: left 0.3s ease;
-}
-
-
-.donut-graph {
-  max-width: 80%;
-  margin-left: 2.2rem;
-  margin-top: 1.5rem;
 }
