@@ -4,14 +4,17 @@ import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {GeneralContextProvider} from "./Components/GeneralContext";
 
 createRoot(document.getElementById("root")).render(
   <>
     <Router>
-      <Routes>
-        <Route element={<App />} path="/*" />
-      </Routes>
+      <GeneralContextProvider>
+        <Routes>
+          <Route element={<App />} path="/*" />
+        </Routes>
+      </GeneralContextProvider>
     </Router>
-    <ToastContainer position="top-right"/>
+    <ToastContainer position="top-right" />
   </>
 );

@@ -42,7 +42,6 @@ const Profile = () => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          "Content-Type": "multipart/form-data",
         },
       });
 
@@ -53,8 +52,11 @@ const Profile = () => {
         toast.error("Image upload failed");
       }
     } catch (err) {
-      toast.error("Error uploading image");
-      console.error(err);
+      toast.error(err?.response?.data?.message || "Error uploading image");
+      console.error(
+        "Image upload error:",
+        err.response?.data || err.message || err
+      );
     } finally {
       setUploading(false);
     }
@@ -98,12 +100,12 @@ const Profile = () => {
                   />
                 </div>
                 <div className="context_menu">
-                  <button
+                  <Link
                     onClick={() => fileInputRef.current.click()}
                     disabled={uploading}
                   >
                     {uploading ? "Uploading..." : "Change photo"}
-                  </button>
+                  </Link>
                   <input
                     type="file"
                     accept="image/*"

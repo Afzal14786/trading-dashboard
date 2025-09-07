@@ -60,14 +60,25 @@ const DashboardNavbar = () => {
     }
   };
 
-  // fetching the data from backend 
+  // fetching the data from backend
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const response = await api.get("/user/profile");
-        setUser(response.data.data); // save the data 
+        setUser(response.data.data); // save the data
       } catch (err) {
         console.error("Error fetching user data:", err);
+
+        const status = err?.response?.status;
+
+        if (status === 404 || status === 401) {
+          toast.error("Session expired. Please log in again.");
+          localStorage.removeItem("accessToken");
+          localStorage.removeItem("refreshToken");
+          navigate("/login");
+        } else {
+          toast.error("Failed to load user profile.");
+        }
       }
     };
     fetchUser();
@@ -135,10 +146,7 @@ const DashboardNavbar = () => {
         <div className="profile-wrapper" ref={dropdownRef}>
           <div className="user-profile" onClick={handleProfile}>
             <div className="avatar">
-              <img
-                src={user?.profile || "user.png"}
-                alt="profile_image"
-              />
+              <img src={user?.profile || "user.png"} alt="profile_image" />
             </div>
             <span>{user?.userId || "UserId"}</span>
           </div>

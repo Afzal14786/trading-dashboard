@@ -482,7 +482,6 @@ input:checked + .slider:before {
 
 .donut-graph {
   max-width: 80%;
-  margin-bottom: 2rem;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 2.2rem;
+  margin-top: 1.5rem;
 }

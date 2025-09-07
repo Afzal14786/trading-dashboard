@@ -151,6 +151,7 @@
   .buttons {
     width: 100%;
     box-sizing: border-box;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -166,7 +167,7 @@
   .btn {
     text-decoration: none;
     padding: 10px 20px;
-    border-radius: 2px;
+    border-radius: 10px;
     color: #fff;
     margin-right: 2px;
     margin-left: 2px;
@@ -178,7 +179,7 @@
   }
   
   .btn-blue {
-    background: #4184f3;
+    background: orange;
   }
   
   /* sudo selectors */
@@ -219,3 +220,63 @@
     color: #fff;
   }
   
+  /* Full screen overlay to center the modal */
+.buy-window-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2); /* subtle dark overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* Centered container */
+.buy-window-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  width: 480px;
+  padding: 24px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Header area */
+.buy-window-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* Logo circle */
+.logo-circle {
+  width: 48px;
+  height: 48px;
+  background-color: #eee;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+}
+
+/* Heading styles */
+.buy-window-header h2 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Make UID smaller if needed */
+.stock-uid {
+  font-size: 0.85rem;
+  color: #666;
+  margin-left: 8px;
+}
