@@ -8,9 +8,10 @@ export const GeneralContextProvider = ({ children }) => {
   const [isBuyWindowOpen, setIsBuyWindowOpen] = useState(false);
   const [selectedStockUID, setSelectedStockUID] = useState("");
 
-  const openBuyWindow = (uid) => {
+  const openBuyWindow = (uid, callback = null) => {
     setIsBuyWindowOpen(true);
     setSelectedStockUID(uid);
+    setOnBuySuccessCallback(() => callback);
   };
 
   const closeBuyWindow = () => {

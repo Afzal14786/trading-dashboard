@@ -9,8 +9,8 @@ import DonutChart from "../charts/DonutChart";
 
 const Sidebar = () => {
   const [searchValue, setSearchValue] = useState("");
+  const [query, setQuery] = useState("");
 
-  // Filter the watchlist by search value
   const filteredWatchlist = watchlist.filter((stock) =>
     stock.name.toLowerCase().includes(searchValue.toLowerCase())
   );

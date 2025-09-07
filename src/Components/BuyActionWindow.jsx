@@ -8,6 +8,8 @@ const BuyActionWindow = ({ uid }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
   const generalContext = useContext(GeneralContext);
+  const { closeBuyWindow, onBuySuccessCallback } = generalContext;
+
 
   const handleBuyClick = async () => {
     try {
@@ -18,7 +20,10 @@ const BuyActionWindow = ({ uid }) => {
         mode: "BUY",
       });
 
-      toast.success                 ("Order placed successfully!");
+      toast.success("Order placed successfully!");
+      if (onBuySuccessCallback) {
+        onBuySuccessCallback();
+      }
     } catch (err) {
       console.error("Error placing order:", err);
       toast.error("Failed to place order.");

@@ -1,18 +1,62 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 
-import VerticalChart from "../../charts/VerticalChart"
+import VerticalChart from "../../charts/VerticalChart";
 import "./style.css";
+
+import { GeneralContext } from "../../Components/GeneralContext"; // adjust path as needed
+import StockSearchModal from "../../Components/Stock/StockSearchModel"; // you will build this
+import StockDetail from "../../Components/Stock/StockDetail";
+
+import { toast } from "react-toastify";
 
 const HoldingAll = () => {
   const [allHoldings, setAllHoldings] = useState([]);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [selectedStock, setSelectedStock] = useState(null);
+  const { openBuyWindow } = useContext(GeneralContext);
+  const [onBuySuccessCallback, setOnBuySuccessCallback] = useState(null);
+  const token = localStorage.getItem("accessToken");
+  const refreshHoldings = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:5174/api/v1/holdings/allHoldings",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setAllHoldings(res.data);
+    } catch (err) {
+      console.error("Failed to refresh holdings", err);
+    }
+  };
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5174/api/v1/holdings/allHoldings")
-      .then((res) => {
-        setAllHoldings(res.data);
-      });
+    const fetchHoldings = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:5174/api/v1/holdings/allHoldings",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const data = res.data;
+
+        setAllHoldings(data);
+
+        if (!data || data.length === 0) {
+          toast.success("No Holding Yet");
+        }
+      } catch (error) {
+        console.error("Failed to fetch holdings", error);
+        toast.error("Failed to fetch holdings . refresh again");
+      }
+    };
+    fetchHoldings();
   }, []);
 
   const hasHoldings = allHoldings && allHoldings.length > 0;
@@ -20,20 +64,19 @@ const HoldingAll = () => {
   const labels = allHoldings.map((subArray) => subArray["name"]);
 
   const data2 = {
-  labels: allHoldings.map((stock) => stock.name),
-  datasets: [
-    {
-      label: "Stock Prices",
-      data: allHoldings.map((stock) => stock.price),
-      borderColor: "rgba(255, 99, 132, 1)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-      borderWidth: 2,
-      borderRadius: 10,
-      borderSkipped: false,
-    },
-  ],
-};
-
+    labels: allHoldings.map((stock) => stock.name),
+    datasets: [
+      {
+        label: "Stock Prices",
+        data: allHoldings.map((stock) => stock.price),
+        borderColor: "rgba(255, 99, 132, 1)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        borderWidth: 2,
+        borderRadius: 10,
+        borderSkipped: false,
+      },
+    ],
+  };
 
   return (
     <>
@@ -56,7 +99,9 @@ const HoldingAll = () => {
             </p>
           </div>
           <div className="empty_btn">
-            <button className="btn1">Get Started</button>
+            <button className="btn1" onClick={() => setIsSearchOpen(true)}>
+              Get Started
+            </button>
           </div>
           <a href="#" className="analytics">
             Analytics
@@ -108,8 +153,33 @@ const HoldingAll = () => {
 
       {/* this is rhe graph section */}
       <div className="graph">
-        <VerticalChart data={data2}/>
+        <VerticalChart data={data2} />
       </div>
+
+      {isSearchOpen && (
+        <StockSearchModal
+          onSelect={(stock) => {
+            setSelectedStock(stock);
+            setIsSearchOpen(false);
+          }}
+          onClose={() => setIsSearchOpen(false)}
+        />
+      )}
+
+      {selectedStock && (
+        <StockDetail
+          stock={selectedStock}
+          onBuyClick={(uid) => {
+            openBuyWindow(uid, refreshHoldings);
+            setSelectedStock(null);
+          }}
+          onSellClick={(uid) => {
+            alert("Sell functionality coming soon");
+            setSelectedStock(null);
+          }}
+          onClose={() => setSelectedStock(null)}
+        />
+      )}
     </>
   );
 };
