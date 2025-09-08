@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
-import axios from "axios";
-import { GeneralContext } from "../../Components/GeneralContext"; // adjust path as needed
+import api from "../../api/api.js"
+import { GeneralContext } from "../../Components/GeneralContext";
 import StockSearchModal from "../../Components/Stock/StockSearchModel";
 import StockDetail from "../../Components/Stock/StockDetail";
 import { toast } from "react-toastify";
@@ -16,8 +16,8 @@ const Positions = () => {
 
   const refreshPositions = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:5174/api/v1/positions/allPositions",
+      const res = await api.get(
+        "/positions/allPositions",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -33,8 +33,8 @@ const Positions = () => {
   useEffect(() => {
     const fetchAllPositions = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:5174/api/v1/positions/allPositions",
+        const res = await api.get(
+          "/positions/allPositions",
           {
             headers: {
               Authorization: `Bearer ${token}`,

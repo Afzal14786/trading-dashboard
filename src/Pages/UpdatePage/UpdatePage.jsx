@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import api from "../../api/api.js";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { toast } from "react-toastify";
@@ -23,6 +23,11 @@ const UpdatePage = () => {
 
   const navigate = useNavigate();
 
+  const handleCancel = ()=> {
+    // navigate to the dashboard
+    navigate("/");
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -38,8 +43,8 @@ const UpdatePage = () => {
 
     try {
       const token = localStorage.getItem("accessToken");
-      const res = await axios.post(
-        "http://localhost:5174/api/v1/user/profile/update-password",
+      const res = await api.post(
+        "/user/profile/update-password",
         {
           oldPassword: currentPassword,
           newPassword: newPassword,
@@ -169,8 +174,8 @@ const UpdatePage = () => {
               </div>
 
               <div className="btns_divs">
-                <button className="btns submit">Submit</button>
-                <button className="btns cancel">Cancel</button>
+                <button type="submit" className="btns submit">Submit</button>
+                <button type="button" className="btns cancel" onClick={handleCancel}>Cancel</button>
               </div>
             </form>
           </div>

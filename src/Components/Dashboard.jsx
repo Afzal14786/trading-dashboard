@@ -20,6 +20,7 @@ import SipPage from '../Pages/Orders/SipPage';
 import PathNotFound from '../PathNotFound';
 import UpdatePage from '../Pages/UpdatePage/UpdatePage';
 import LoginPage from '../Pages/LoginPage/LoginPage';
+import ResetPassword from '../Pages/ResetPage/ResetPassword';
 
 import PrivateRoute from './PrivateRoute';
 
@@ -27,7 +28,10 @@ const Dashboard = () => {
   return (
     <Routes>
       
+      {/* All the public router are here */}
+      <Route path="*" element={<PathNotFound />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/reset" element={<ResetPassword/>}/>
 
       <Route element={<PrivateRoute />}>
           <Route path="/" element={<DashboardSummary />} />
@@ -52,9 +56,6 @@ const Dashboard = () => {
           <Route path="/edit-profile" element={<UpdatePage />} />
           <Route path="/profile" element={<Profile />} />
       </Route>
-
-      {/* Catch-all for undefined paths */}
-      <Route path="*" element={<PathNotFound />} />
     </Routes>
   );
 };

@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import axios from "axios";
+import api from "../api/api.js";
 import { GeneralContext } from "./GeneralContext";
 import "./BuyActionWindow.css";
 import { toast } from "react-toastify";
@@ -13,7 +13,7 @@ const BuyActionWindow = ({ uid }) => {
 
   const handleBuyClick = async () => {
     try {
-      await axios.post("http://localhost:3000/new-order", {
+      await api.post("/new-order", {
         name: uid,
         qty: Number(stockQuantity),
         price: Number(stockPrice),

@@ -7,7 +7,7 @@ function App() {
   const location = useLocation();
 
   // Check if the current path is the login page.
-  const isLoginPage = location.pathname === "/login";
+  const isLoginPage = location.pathname === "/login" || location.pathname === "/reset";
 
   return (
     <>

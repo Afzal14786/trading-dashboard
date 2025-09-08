@@ -1,15 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import "./style.css";
-import axios from "axios";
+import api from "../../api/api.js"
 import { toast } from "react-toastify";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../../firebase";
+import "./style.css";
 
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
-const API_BASE_URL = "http://localhost:5174/api/v1/user";
 
 const isTenDigitPhone = (input) => /^\d{10}$/.test(input);
 
@@ -29,14 +28,6 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const [confirmationResult, setConfirmationResult] = useState(null);
   const recaptchaContainerRef = useRef(null);
-
-  // Check if already logged in
-  useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    if (accessToken) {
-      navigate("/");
-    }
-  }, [navigate]);
 
   // Setup reCAPTCHA when phone number is valid
   useEffect(() => {
@@ -96,7 +87,7 @@ const LoginPage = () => {
 
     setIsLoading(true);
     try {
-      const response = await axios.post(`${API_BASE_URL}/login`, {
+      const response = await api.post(`/user/login`, {
         identifier,
         password,
       });
@@ -136,12 +127,12 @@ const LoginPage = () => {
           return;
         }
         await confirmationResult.confirm(otp);
-        response = await axios.post(`${API_BASE_URL}/login/verify-otp`, {
+        response = await api.post(`user/login/verify-otp`, {
           identifier,
           otp: "verified",
         });
       } else {
-        response = await axios.post(`${API_BASE_URL}/login/verify-otp`, {
+        response = await api.post(`/user/login/verify-otp`, {
           identifier,
           otp,
         });
@@ -173,7 +164,7 @@ const LoginPage = () => {
         await window.recaptchaVerifier.render();
         sendPhoneOtp();
       } else {
-        await axios.post(`${API_BASE_URL}/login`, { identifier, password });
+        await api.post(`/login`, { identifier, password });
         toast.success("New OTP sent to your email.");
       }
     } catch {
@@ -251,7 +242,7 @@ const LoginPage = () => {
               <button type="submit" className="login_btn_new" disabled={isLoading}>
                 {isLoading ? "Loading..." : "Login"}
               </button>
-              <Link to="#" className="forgot_link">
+              <Link to="/reset" className="forgot_link">
                 Forgot user ID or password?
               </Link>
             </>

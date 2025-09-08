@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import axios from "axios";
+import api from "../../api/api.js";
 import VerticalChart from "../../charts/VerticalChart";
 import { GeneralContext } from "../../Components/GeneralContext"; 
 import StockSearchModal from "../../Components/Stock/StockSearchModel";
@@ -18,8 +18,8 @@ const HoldingAll = () => {
   
   const refreshHoldings = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:5174/api/v1/holdings/allHoldings",
+      const res = await api.get(
+        "/holdings/allHoldings",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -35,8 +35,8 @@ const HoldingAll = () => {
   useEffect(() => {
     const fetchHoldings = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:5174/api/v1/holdings/allHoldings",
+        const res = await api.get(
+          "/holdings/allHoldings",
           {
             headers: {
               Authorization: `Bearer ${token}`,

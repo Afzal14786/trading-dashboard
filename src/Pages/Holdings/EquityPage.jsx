@@ -1,5 +1,5 @@
-import { useState, useEffect, useContext } from "react";
-import axios from "axios";
+import { useState, useContext } from "react";
+import api from "../../api/api.js"
 import "./style.css";
 
 import { GeneralContext } from "../../Components/GeneralContext";
@@ -77,7 +77,7 @@ const EquityPage = () => {
 
   const refreshHoldings = async () => {
     try {
-      const res = await axios.get(
+      const res = await api.get(
         "http://localhost:5174/api/v1/holdings/allHoldings",
         {
           headers: {

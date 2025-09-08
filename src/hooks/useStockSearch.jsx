@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../api/api.js"
 
 const useStockSearch = (query) => {
   const [results, setResults] = useState([]);
@@ -16,8 +16,8 @@ const useStockSearch = (query) => {
 
       setLoading(true);
       try {
-        const res = await axios.get(
-          `http://localhost:5174/api/v1/stocks/search?q=${query}`
+        const res = await api.get(
+          `/stocks/search?q=${query}`
         );
 
         if (res.data.success) {

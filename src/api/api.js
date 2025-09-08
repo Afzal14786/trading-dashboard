@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5174/api/v1", // backend base URL
+  baseURL: import.meta.env.VITE_BASE_URL, // backend base URL
   withCredentials: true, // sending cookies to backend for refresh the tokens
 });
 
@@ -17,7 +17,7 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Optionally handle token refresh (if backend provides it via response headers)
+// handle token refresh (if backend provides it via response headers)
 api.interceptors.response.use(
   (response) => {
     const newToken = response.headers["x-access-token"];
@@ -30,7 +30,6 @@ api.interceptors.response.use(
     // handle global errors like unauthorized
     if (error.response?.status === 401) {
       console.error("Unauthorized! Redirecting to login...");
-      // you can also auto-logout here if needed
     }
     return Promise.reject(error);
   }

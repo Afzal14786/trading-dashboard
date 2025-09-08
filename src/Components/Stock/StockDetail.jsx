@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import useStockSearch from "../../hooks/useStockSearch";
 import "./StockDetail.css";
-// HIGHLIGHT: Import ReactDOM
 import ReactDOM from 'react-dom';
 
 const StockDetail = ({ stock, onBuyClick, onSellClick, onClose }) => {
@@ -33,7 +32,7 @@ const StockDetail = ({ stock, onBuyClick, onSellClick, onClose }) => {
   const formatNum = (num) =>
     num !== undefined && num !== null ? Number(num).toFixed(2) : "N/A";
 
-  // HIGHLIGHT: Render the modal using a Portal
+  // Render the modal using a Portal
   return ReactDOM.createPortal(
     <div className="modal-backdrop">
       <div className="stock-detail-modal">
