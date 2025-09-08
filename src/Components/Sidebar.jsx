@@ -7,12 +7,15 @@ import { WatchListItem } from "./WatchListItem";
 import { watchlist } from "../data/data";
 import useStockSearch from "../hooks/useStockSearch";
 import StockDetail from "../Components/Stock/StockDetail";
+// Remove GeneralContextProvider from this import
+import { GeneralContext } from "./GeneralContext";
 import DonutChart from "../charts/DonutChart";
 
 const Sidebar = () => {
   const [searchValue, setSearchValue] = useState("");
   const [query, setQuery] = useState("");
   const [selectedStock, setSelectedStock] = useState(null);
+  const { openBuyWindow } = useContext(GeneralContext);
   const { results, loading, hasSearched } = useStockSearch(query);
 
   const handleSelectedStock = (stock) => {
@@ -121,7 +124,7 @@ const Sidebar = () => {
         <StockDetail
           stock={selectedStock}
           onBuyClick={(uid) => {
-            openBuyWindow(uid, refreshHoldings);
+            openBuyWindow(uid); 
             setSelectedStock(null);
           }}
           onSellClick={(uid) => {

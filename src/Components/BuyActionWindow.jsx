@@ -2,14 +2,14 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import { GeneralContext } from "./GeneralContext";
 import "./BuyActionWindow.css";
-import {toast} from "react-toastify"
+import { toast } from "react-toastify";
+import ReactDOM from "react-dom";
 
 const BuyActionWindow = ({ uid }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
   const generalContext = useContext(GeneralContext);
   const { closeBuyWindow, onBuySuccessCallback } = generalContext;
-
 
   const handleBuyClick = async () => {
     try {
@@ -36,7 +36,7 @@ const BuyActionWindow = ({ uid }) => {
     generalContext.closeBuyWindow();
   };
 
-  return (
+  return ReactDOM.createPortal(
     <div className="buy-window-overlay">
       <div className="buy-window-container">
         <div className="buy-window-header">
@@ -88,7 +88,8 @@ const BuyActionWindow = ({ uid }) => {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.getElementById("buy-modal-root")
   );
 };
 

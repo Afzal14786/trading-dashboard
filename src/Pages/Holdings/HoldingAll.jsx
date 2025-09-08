@@ -1,14 +1,12 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-
 import VerticalChart from "../../charts/VerticalChart";
-import "./style.css";
-
-import { GeneralContext } from "../../Components/GeneralContext"; // adjust path as needed
-import StockSearchModal from "../../Components/Stock/StockSearchModel"; // you will build this
+import { GeneralContext } from "../../Components/GeneralContext"; 
+import StockSearchModal from "../../Components/Stock/StockSearchModel";
 import StockDetail from "../../Components/Stock/StockDetail";
-
 import { toast } from "react-toastify";
+
+import "./style.css";
 
 const HoldingAll = () => {
   const [allHoldings, setAllHoldings] = useState([]);
@@ -17,6 +15,7 @@ const HoldingAll = () => {
   const { openBuyWindow } = useContext(GeneralContext);
   const [onBuySuccessCallback, setOnBuySuccessCallback] = useState(null);
   const token = localStorage.getItem("accessToken");
+  
   const refreshHoldings = async () => {
     try {
       const res = await axios.get(
@@ -46,14 +45,16 @@ const HoldingAll = () => {
         );
         const data = res.data;
 
-        setAllHoldings(data);
-
-        if (!data || data.length === 0) {
-          toast.success("No Holding Yet");
+        if (Array.isArray(data)) {
+          setAllHoldings(data);
+        } else {
+          setAllHoldings([]);
         }
+
       } catch (error) {
         console.error("Failed to fetch holdings", error);
         toast.error("Failed to fetch holdings . refresh again");
+        setAllHoldings([]);
       }
     };
     fetchHoldings();
@@ -61,14 +62,14 @@ const HoldingAll = () => {
 
   const hasHoldings = allHoldings && allHoldings.length > 0;
 
-  const labels = allHoldings.map((subArray) => subArray["name"]);
+  const labels = allHoldings?.map((subArray) => subArray["name"]) || [];
 
   const data2 = {
-    labels: allHoldings.map((stock) => stock.name),
+    labels: allHoldings?.map((stock) => stock.name) || [],
     datasets: [
       {
         label: "Stock Prices",
-        data: allHoldings.map((stock) => stock.price),
+        data: allHoldings?.map((stock) => stock.price) || [],
         borderColor: "rgba(255, 99, 132, 1)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
         borderWidth: 2,
@@ -77,7 +78,7 @@ const HoldingAll = () => {
       },
     ],
   };
-
+  
   return (
     <>
       <p className="title">
@@ -109,7 +110,6 @@ const HoldingAll = () => {
         </div>
       ) : (
         // If holdings exist → render table
-
         <div className="holdings-table">
           <table>
             <thead>
@@ -124,7 +124,6 @@ const HoldingAll = () => {
                 <th>Day Chg</th>
               </tr>
             </thead>
-
             <tbody>
               {allHoldings.map((stock, index) => (
                 <tr key={index}>
@@ -170,7 +169,7 @@ const HoldingAll = () => {
         <StockDetail
           stock={selectedStock}
           onBuyClick={(uid) => {
-            openBuyWindow(uid, refreshHoldings);
+            openBuyWindow(uid, refreshHoldings); 
             setSelectedStock(null);
           }}
           onSellClick={(uid) => {

@@ -1,18 +1,22 @@
-import React, {useState} from "react";
-import "./style.css"
+import { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import "./style.css";
 
-// The Dropdown component is now a sibling component in the same file.
+import { GeneralContext } from "../../Components/GeneralContext";
+import StockSearchModal from "../../Components/Stock/StockSearchModel";
+import StockDetail from "../../Components/Stock/StockDetail";
+
 const Dropdown = ({ options, onSelect, defaultOption }) => {
   const [isOpen, setIsOpen] = useState(false);
-  // Correct: Initialize state with the defaultOption prop.
-  const [selectedOption, setSelectedOption] = useState(defaultOption || 'Select an Option');
+  const [selectedOption, setSelectedOption] = useState(
+    defaultOption || "Select an Option"
+  );
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
 
   const handleSelect = (option) => {
-    // Correct: Update the selected option in state.
     setSelectedOption(option);
     if (onSelect) {
       onSelect(option);
@@ -28,7 +32,6 @@ const Dropdown = ({ options, onSelect, defaultOption }) => {
           onClick={handleToggle}
           className="dropdown-button"
         >
-          {/* Correct: Display the selectedOption state */}
           {selectedOption}
           <svg
             className="dropdown-icon"
@@ -48,13 +51,11 @@ const Dropdown = ({ options, onSelect, defaultOption }) => {
 
       {isOpen && (
         <div className="dropdown-menu">
-          {/* Correct: Use the correct wrapper class */}
           <div className="dropdown-options-list">
             {options.map((option, index) => (
               <button
                 key={index}
                 onClick={() => handleSelect(option)}
-                // Correct: Use the `dropdown-item` class
                 className="dropdown-item"
               >
                 {option}
@@ -68,9 +69,30 @@ const Dropdown = ({ options, onSelect, defaultOption }) => {
 };
 
 const EquityPage = () => {
-  const dropdownOptions = ['All equity', 'MTF', 'Kite only', 'Smallcase'];
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [selectedStock, setSelectedStock] = useState(null);
+  const { openBuyWindow } = useContext(GeneralContext);
+  const [onBuySuccessCallback, setOnBuySuccessCallback] = useState(null);
+  const token = localStorage.getItem("accessToken");
+
+  const refreshHoldings = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:5174/api/v1/holdings/allHoldings",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    } catch (err) {
+      console.error("Failed to refresh holdings", err);
+    }
+  };
+  
+  const dropdownOptions = ["All equity", "MTF", "Kite only", "Smallcase"];
   const handleOptionSelect = (selectedOption) => {
-    console.log('Selected:', selectedOption);
+    console.log("Selected:", selectedOption);
   };
 
   return (
@@ -98,7 +120,7 @@ const EquityPage = () => {
           </div>
 
           <div className="empty_btn">
-            <button className="btn1">Get Started</button>
+            <button className="btn1" onClick={() => setIsSearchOpen(true)}>Get Started</button>
           </div>
 
           <a href="#" className="analytics">
@@ -106,6 +128,31 @@ const EquityPage = () => {
           </a>
         </div>
       </div>
+
+      {isSearchOpen && (
+        <StockSearchModal
+          onSelect={(stock) => {
+            setSelectedStock(stock);
+            setIsSearchOpen(false);
+          }}
+          onClose={() => setIsSearchOpen(false)}
+        />
+      )}
+
+      {selectedStock && (
+        <StockDetail
+          stock={selectedStock}
+          onBuyClick={(uid) => {
+            openBuyWindow(uid, refreshHoldings);
+            setSelectedStock(null);
+          }}
+          onSellClick={(uid) => {
+            alert("Sell functionality coming soon");
+            setSelectedStock(null);
+          }}
+          onClose={() => setSelectedStock(null)}
+        />
+      )}
     </>
   );
 };

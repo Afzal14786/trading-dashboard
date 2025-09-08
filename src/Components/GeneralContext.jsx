@@ -1,12 +1,12 @@
 import React, { useState, createContext } from "react";
 import BuyActionWindow from "./BuyActionWindow";
 
-// Create and export context
 export const GeneralContext = createContext();
 
 export const GeneralContextProvider = ({ children }) => {
   const [isBuyWindowOpen, setIsBuyWindowOpen] = useState(false);
   const [selectedStockUID, setSelectedStockUID] = useState("");
+    const [onBuySuccessCallback, setOnBuySuccessCallback] = useState(null);
 
   const openBuyWindow = (uid, callback = null) => {
     setIsBuyWindowOpen(true);
@@ -29,7 +29,12 @@ export const GeneralContextProvider = ({ children }) => {
   return (
     <GeneralContext.Provider value={contextValue}>
       {children}
-      {isBuyWindowOpen && <BuyActionWindow uid={selectedStockUID} />}
+      {isBuyWindowOpen && (
+        <BuyActionWindow
+          uid={selectedStockUID}
+          onBuySuccessCallback={onBuySuccessCallback}
+        />
+      )}
     </GeneralContext.Provider>
   );
 };
