@@ -1,15 +1,17 @@
 import { useState, useContext } from "react";
 import "./sidebar.css";
 import { Search, ArrowDownUp } from "lucide-react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import { WatchListItem } from "./WatchListItem";
 
 import { watchlist } from "../data/data";
+import useStockSearch from "../hooks/useStockSearch";
 import DonutChart from "../charts/DonutChart";
 
 const Sidebar = () => {
   const [searchValue, setSearchValue] = useState("");
   const [query, setQuery] = useState("");
+  const { results, loading, hasSearched } = useStockSearch(query);
 
   const filteredWatchlist = watchlist.filter((stock) =>
     stock.name.toLowerCase().includes(searchValue.toLowerCase())
@@ -47,33 +49,51 @@ const Sidebar = () => {
     <div className="watchlist-container">
       {/* Search bar */}
       <div className="search-container">
-        <label htmlFor="search-input" className="search-icon-container">
-          <Search className="search-icon" />
-        </label>
-        <input
-          type="text"
-          value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
-          placeholder="Search eg: infy bse, nifty fut, index fund, et"
-          className="search-input"
-          name="search-input"
-          id="search-input"
-        />
-        <div className="keyboard-shortcut">
-          <span className="font-sans">Ctrl + K</span>
+        <div className="search-input-wrapper">
+          <Search className="search-icon" /> {/* Add the Search component */}
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search eg: infy bse, nifty fut, index fund, etc"
+            className="sidebar-search-bar"
+          />
+          {/* here all the result will display */}
+          <div className="sidebar-search-result">
+            {loading && <div className="loader-sidebar">Loading...</div>}
+
+            {!loading &&
+              results.length > 0 &&
+              results.map((stock, idx) => (
+                <div
+                  key={idx}
+                  className="sidebar-search-item"
+                  onClick={() => onSelect(stock)}
+                >
+                  <div>
+                    {stock.name} ({stock.symbol})
+                  </div>
+                  <div className="exchange-sidebar">{stock.exchange}</div>
+                </div>
+              ))}
+
+            {!loading && hasSearched && results.length === 0 && (
+              <div className="no-results-sidebar">No stocks found</div>
+            )}
+          </div>
         </div>
-        <button className="sort-button">
+
+        <div className="right-components">
+          <span className="shortcut">ctrl + K</span>
           <ArrowDownUp className="sort-icon" />
-        </button>
+        </div>
       </div>
 
       {/* Watchlist metadata */}
       <div className="watchlist-size">
         <span className="counts"> {filteredWatchlist.length} / 50</span>
         <span className="new-group">
-          <Link
-            onClick={() => alert("Create new group feature coming soon!")}
-          >
+          <Link onClick={() => alert("Create new group feature coming soon!")}>
             + New group
           </Link>
         </span>
@@ -88,7 +108,7 @@ const Sidebar = () => {
 
       {/* Donut graph */}
       <div className="donut-graph">
-          <DonutChart data={data} />
+        <DonutChart data={data} />
       </div>
     </div>
   );

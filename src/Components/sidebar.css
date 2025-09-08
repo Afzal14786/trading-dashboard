@@ -9,88 +9,127 @@
     overflow-y: auto;
 }
 
+/* Container for the entire search component */
 .search-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 0 15px 15px 15px;
-    padding: 5px 10px;
-    justify-content: space-between;
-    border: 1px solid black;
-    border-radius: 10px;
-    color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0.95rem 10px;
+  gap: 10px;
+  width: 90%;
+  border: 1px solid gray;
+  border-radius: 15px;
+  color: gray;
+  position: relative;
 }
 
-/* implementing the search option  */
-.search-results {
-  max-height: 300px;
+/* Wrapper for the input and its results dropdown */
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+/* The search icon */
+.search-icon {
+  margin-left: 10px;
+  color: gray;
+}
+
+/* The search bar input field */
+.sidebar-search-bar {
+  flex: 1;
+  height: 36px;
+  padding: 5px;
+  border: none;
+  font-size: 16px;
+  background-color: transparent;
+}
+
+.sidebar-search-bar::placeholder {
+  padding-left: 0.5rem;
+  color: gray;
+  font-size: 15px;
+}
+
+.sidebar-search-bar:focus {
+  outline: none;
+  border: none;
+}
+
+/* The container for the search results dropdown */
+.sidebar-search-result {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  max-height: 200px;
   overflow-y: auto;
-  border-top: 1px solid #eee;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 100;
 }
 
-.search-item {
-  padding: 10px 12px;
-  border-bottom: 1px solid #f0f0f0;
+/* Styling for each individual result item */
+.sidebar-search-item {
+  padding: 10px;
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  transition: background 0.2s ease;
+  border-bottom: 1px solid #eee;
+  color: #333333;
 }
 
-.search-item:hover {
-  background-color: #f9f9f9;
+.sidebar-search-item:hover {
+  background-color: #f0f0f0;
 }
 
-.exchange {
+.exchange-sidebar {
+  font-size: 0.8rem;
+  background-color: #0d5db3;
+  color: #fff;
   font-size: 13px;
-  color: white;
-  background-color: #2196f3;
-  padding: 2px 8px;
-  border-radius: 4px;
+  border-radius: 5px;
+  text-align: center;
+  padding: 2px;
 }
 
-.search-input {
-    flex: 1;
-    border: none;
-    background-color: transparent;
-    outline: none;
-    border-left: 1px solid gray;
-    padding-left: 15px;
-
+.no-results-sidebar {
+  padding: 10px;
+  text-align: center;
+  color: #888;
 }
 
-.search-icon-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
+/* Loader style */
+.loader-sidebar {
+  padding: 10px;
+  text-align: center;
+  color: #555;
+  font-style: italic;
 }
 
-.search-icon {
-    cursor: pointer;
+.right-components {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
-.sort-button {
-    cursor: pointer;
-    border: none;
-    border-radius: 20%;
-    margin-left: 8px;
-    margin-right: 10px;
-    background:none;
-    background-color: transparent;
+.sort-icon {
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
 }
 
-.sort-button .sort-icon {
-    height: 20px;
-    color: gray;
-}
+/* watchlist section */
 
 .watchlist-size {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 5px 25px;
+    margin: 20px 25px;
     font-size: 15px;
 }
 
