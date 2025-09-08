@@ -15,6 +15,6 @@ createRoot(document.getElementById("root")).render(
         </Routes>
       </GeneralContextProvider>
     </Router>
-    <ToastContainer position="top-right" />
+    <ToastContainer position="bottom-right" />
   </>
 );
