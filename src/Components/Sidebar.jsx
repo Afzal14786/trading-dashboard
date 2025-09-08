@@ -6,12 +6,18 @@ import { WatchListItem } from "./WatchListItem";
 
 import { watchlist } from "../data/data";
 import useStockSearch from "../hooks/useStockSearch";
+import StockDetail from "../Components/Stock/StockDetail";
 import DonutChart from "../charts/DonutChart";
 
 const Sidebar = () => {
   const [searchValue, setSearchValue] = useState("");
   const [query, setQuery] = useState("");
+  const [selectedStock, setSelectedStock] = useState(null);
   const { results, loading, hasSearched } = useStockSearch(query);
+
+  const handleSelectedStock = (stock) => {
+    setSelectedStock(stock);
+  };
 
   const filteredWatchlist = watchlist.filter((stock) =>
     stock.name.toLowerCase().includes(searchValue.toLowerCase())
@@ -68,7 +74,7 @@ const Sidebar = () => {
                 <div
                   key={idx}
                   className="sidebar-search-item"
-                  onClick={() => onSelect(stock)}
+                  onClick={() => handleSelectedStock(stock)}
                 >
                   <div>
                     {stock.name} ({stock.symbol})
@@ -110,6 +116,21 @@ const Sidebar = () => {
       <div className="donut-graph">
         <DonutChart data={data} />
       </div>
+
+      {selectedStock && (
+        <StockDetail
+          stock={selectedStock}
+          onBuyClick={(uid) => {
+            openBuyWindow(uid, refreshHoldings);
+            setSelectedStock(null);
+          }}
+          onSellClick={(uid) => {
+            alert("Sell functionality coming soon");
+            setSelectedStock(null);
+          }}
+          onClose={() => setSelectedStock(null)}
+        />
+      )}
     </div>
   );
 };

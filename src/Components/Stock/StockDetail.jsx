@@ -1,11 +1,17 @@
 import { useState, useEffect } from "react";
 import useStockSearch from "../../hooks/useStockSearch";
 import "./StockDetail.css";
+// HIGHLIGHT: Import ReactDOM
+import ReactDOM from 'react-dom';
 
 const StockDetail = ({ stock, onBuyClick, onSellClick, onClose }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const { results: searchResults } = useStockSearch(searchQuery);
   const [selectedStock, setSelectedStock] = useState(stock);
+
+  useEffect(() => {
+    setSelectedStock(stock);
+  }, [stock]);
 
   const {
     name,
@@ -27,7 +33,8 @@ const StockDetail = ({ stock, onBuyClick, onSellClick, onClose }) => {
   const formatNum = (num) =>
     num !== undefined && num !== null ? Number(num).toFixed(2) : "N/A";
 
-  return (
+  // HIGHLIGHT: Render the modal using a Portal
+  return ReactDOM.createPortal(
     <div className="modal-backdrop">
       <div className="stock-detail-modal">
         {/* Search bar inside modal */}
@@ -64,7 +71,7 @@ const StockDetail = ({ stock, onBuyClick, onSellClick, onClose }) => {
               {name} - {exchange}
             </span>
           </div>
-          <div className="stock-price">
+        <div className="stock-price">
             <h2>₹{formatNum(price)}</h2>
             <span style={{ color: change < 0 ? "red" : "green" }}>
               {change < 0 ? "" : "+"}
@@ -193,7 +200,8 @@ const StockDetail = ({ stock, onBuyClick, onSellClick, onClose }) => {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.getElementById('modal-root')
   );
 };
 
