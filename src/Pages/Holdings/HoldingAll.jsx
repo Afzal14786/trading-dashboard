@@ -44,6 +44,7 @@ const HoldingAll = () => {
           }
         );
         const data = res.data;
+        // console.log(`Data fetch from backed : ${data.json()}`);
 
         if (Array.isArray(data)) {
           setAllHoldings(data);
@@ -62,7 +63,7 @@ const HoldingAll = () => {
 
   const hasHoldings = allHoldings && allHoldings.length > 0;
 
-  const labels = allHoldings?.map((subArray) => subArray["name"]) || [];
+  let labels = allHoldings?.map((subArray) => subArray["name"]) || [];
 
   const data2 = {
     labels: allHoldings?.map((stock) => stock.name) || [],
@@ -131,16 +132,14 @@ const HoldingAll = () => {
                   <td>{stock.qty}</td>
                   <td>{stock.avg.toFixed(2)}</td>
                   <td>{stock.price.toFixed(2)}</td>
-                  <td>{stock.price * stock.qty}</td>
-                  <td className={stock.net.includes("-") ? "loss" : "profit"}>
-                    {(stock.price * stock.qty - stock.avg * stock.qty).toFixed(
-                      2
-                    )}
+                  <td>{stock.currentValue.toFixed(2)}</td>
+                  <td className={stock.isLoss ? "loss" : "profit"}>
+                    {stock.pnl.toFixed(2)}
                   </td>
-                  <td className={stock.net.includes("-") ? "loss" : "profit"}>
+                  <td className={stock.isLoss ? "loss" : "profit"}>
                     {stock.net}
                   </td>
-                  <td className={stock.day.includes("-") ? "loss" : "profit"}>
+                  <td className={stock.isLoss ? "loss" : "profit"}>
                     {stock.day}
                   </td>
                 </tr>

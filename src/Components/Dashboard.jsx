@@ -21,6 +21,8 @@ import PathNotFound from '../PathNotFound';
 import UpdatePage from '../Pages/UpdatePage/UpdatePage';
 import LoginPage from '../Pages/LoginPage/LoginPage';
 import ResetPassword from '../Pages/ResetPage/ResetPassword';
+import SetNewPassword from "../Pages/ResetPage/SetNewPassword";
+import ForgotUserId from "../Pages/ResetPage/ForgotUserId";
 
 import PrivateRoute from './PrivateRoute';
 
@@ -31,7 +33,9 @@ const Dashboard = () => {
       {/* All the public router are here */}
       <Route path="*" element={<PathNotFound />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/reset" element={<ResetPassword/>}/>
+      <Route path="/reset-password" element={<ResetPassword/>}/>
+      <Route path="forgot-userid" element={<ForgotUserId/>}/>
+      <Route path="reset-password/:token" element={<SetNewPassword/>}/>
 
       <Route element={<PrivateRoute />}>
           <Route path="/" element={<DashboardSummary />} />

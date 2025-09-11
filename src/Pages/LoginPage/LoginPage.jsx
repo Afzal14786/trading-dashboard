@@ -4,6 +4,7 @@ import api from "../../api/api.js"
 import { toast } from "react-toastify";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../../firebase";
+import ResetFooter from "../ResetPage/ResetFooter.jsx";
 import "./style.css";
 
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -242,7 +243,7 @@ const LoginPage = () => {
               <button type="submit" className="login_btn_new" disabled={isLoading}>
                 {isLoading ? "Loading..." : "Login"}
               </button>
-              <Link to="/reset" className="forgot_link">
+              <Link to="/reset-password" className="forgot_link">
                 Forgot user ID or password?
               </Link>
             </>
@@ -276,32 +277,7 @@ const LoginPage = () => {
       </div>
 
       {/* Footer Section */}
-      <footer className="login_footer_new">
-        <div className="footer_apps">
-          <img src="/images/playstore.svg" alt="play store" className="footer_icon" />
-          <img src="/images/app_store.svg" alt="apple logo" className="footer_icon" />
-        </div>
-
-        <div className="footer_zerodha_logo">
-          <img src="/images/zerodha-logo.svg" alt="zerodha logo" className="footer_logo" />
-        </div>
-
-        <div className="footer_signup_link">
-          <Link to="/signup" className="footer_link">
-            Don&apos;t have an account? Signup now!
-          </Link>
-        </div>
-
-        <div className="footer_legal">
-          <p>
-            Zerodha Broking Limited: Member of <Link to="#">NSE</Link>,{" "}
-            <Link to="#">BSE</Link> – SEBI Reg. no. INZ000031633,{" "}
-            <Link to="#">CDSL</Link> – <Link to="#">SEBI</Link> Reg. no. IN-DP-431-2019 |{" "}
-            <Link to="#">Smart Online Dispute Resolution</Link> |{" "}
-            <Link to="#">SEBI SCORES</Link>
-          </p>
-        </div>
-      </footer>
+      <ResetFooter/>
 
       {/* Invisible Recaptcha */}
       <div id="recaptcha-container" ref={recaptchaContainerRef} style={{ display: "none" }} />

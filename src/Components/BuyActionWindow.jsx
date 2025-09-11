@@ -8,32 +8,41 @@ import ReactDOM from "react-dom";
 const BuyActionWindow = ({ uid }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
-  const generalContext = useContext(GeneralContext);
-  const { closeBuyWindow, onBuySuccessCallback } = generalContext;
+  const { closeBuyWindow, onBuySuccessCallback } = useContext(GeneralContext);
 
   const handleBuyClick = async () => {
+
+    const token = localStorage.getItem("accessToken");
+    const symbol = uid;
     try {
-      await api.post("/new-order", {
-        name: uid,
-        qty: Number(stockQuantity),
+      const response = await api.post("/order/new-order", {
+        symbol: symbol,
+        quantity: Number(stockQuantity),
         price: Number(stockPrice),
-        mode: "BUY",
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
 
-      toast.success("Order placed successfully!");
-      if (onBuySuccessCallback) {
-        onBuySuccessCallback();
+      if (response.data.success){
+        toast.success(response.data.message || "Order Placed Successfully");
+        if (onBuySuccessCallback) {
+          onBuySuccessCallback();
+        }
+        closeBuyWindow();
+      } else {
+        toast.error(response.data.message || "Failed to place order");
       }
+
     } catch (err) {
       console.error("Error placing order:", err);
       toast.error("Failed to place order.");
     }
-
-    generalContext.closeBuyWindow();
   };
 
   const handleCancelClick = () => {
-    generalContext.closeBuyWindow();
+    closeBuyWindow();
   };
 
   return ReactDOM.createPortal(

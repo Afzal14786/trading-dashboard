@@ -63,6 +63,11 @@ const DashboardNavbar = () => {
   // fetching the data from backend
   useEffect(() => {
     const fetchUser = async () => {
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        return;
+      }
+      
       try {
         const response = await api.get("/user/profile");
         setUser(response.data.data); // save the data

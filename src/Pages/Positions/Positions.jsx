@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import api from "../../api/api.js"
+import api from "../../api/api.js";
 import { GeneralContext } from "../../Components/GeneralContext";
 import StockSearchModal from "../../Components/Stock/StockSearchModel";
 import StockDetail from "../../Components/Stock/StockDetail";
@@ -11,19 +11,15 @@ const Positions = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [selectedStock, setSelectedStock] = useState(null);
   const { openBuyWindow } = useContext(GeneralContext);
-  const [onBuySuccessCallback, setOnBuySuccessCallback] = useState(null);
   const token = localStorage.getItem("accessToken");
 
   const refreshPositions = async () => {
     try {
-      const res = await api.get(
-        "/positions/allPositions",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await api.get("/positions/all-positions", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setAllPositions(res.data);
     } catch (err) {
       console.error("Failed to refresh holdings", err);
@@ -33,22 +29,17 @@ const Positions = () => {
   useEffect(() => {
     const fetchAllPositions = async () => {
       try {
-        const res = await api.get(
-          "/positions/allPositions",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
+        const res = await api.get("/positions/all-positions", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setAllPositions(res.data);
       } catch (err) {
         console.error(`Error while fetching the positions`);
         toast.error(`Failed to fetch positions. refresh again`);
       }
     };
-
     fetchAllPositions();
   }, []);
 
@@ -62,14 +53,13 @@ const Positions = () => {
             <div className="description">
               <img
                 src="/images/positions.svg"
-                alt="order Book"
+                alt="Positions illustration"
                 className="image"
               />
               <div className="desc_div">
                 <p>You don't have any positions yet</p>
               </div>
             </div>
-
             <div className="empty_btn">
               <button className="btn1" onClick={() => setIsSearchOpen(true)}>Get Started</button>
               <a href="#" className="view__history">
@@ -84,31 +74,26 @@ const Positions = () => {
             <thead>
               <tr>
                 <th>Product</th>
-                <th>Name</th>
+                <th>Symbol</th>
                 <th>Qty</th>
-                <th>Avg</th>
-                <th>Price</th>
+                <th>Avg. Price</th>
+                <th>LTP</th>
                 <th>P&L</th>
-                <th>Chg</th>
+                <th>Day Chg</th>
               </tr>
             </thead>
-
             <tbody>
               {allPositions.map((position, index) => (
                 <tr key={index}>
                   <td>{position.product}</td>
                   <td>{position.name}</td>
                   <td>{position.qty}</td>
-                  <td>{position.avg}</td>
-                  <td>{position.price}</td>
-                  <td
-                    className={position.net.includes("-") ? "loss" : "profit"}
-                  >
-                    {position.net}
+                  <td>{position.avg.toFixed(2)}</td>
+                  <td>{position.price.toFixed(2)}</td>
+                  <td className={position.isLoss ? "loss" : "profit"}>
+                    {position.pnl.toFixed(2)}
                   </td>
-                  <td
-                    className={position.day.includes("-") ? "loss" : "profit"}
-                  >
+                  <td className={position.isLoss ? "loss" : "profit"}>
                     {position.day}
                   </td>
                 </tr>

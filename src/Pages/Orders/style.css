@@ -91,3 +91,51 @@
     width: 150px;
     margin-bottom: 18px;
 }
+
+/* ⭐ NEW: Table styles for the orders page */
+.orders-table-container {
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.orders-table-container table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.orders-table-container th,
+.orders-table-container td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.orders-table-container th {
+  background-color: #f8f8f8;
+  color: #555;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ⭐ NEW: Status badge styles */
+.status-executed {
+  color: #1a73e8; /* Blue for executed */
+  font-weight: bold;
+}
+
+.status-cancelled {
+  color: #ff5722; /* Orange for cancelled */
+  font-weight: bold;
+}
+
+.status-rejected {
+  color: #d93025; /* Red for rejected */
+  font-weight: bold;
+}
+
+.status-pending {
+  color: #ff9800; /* Yellow for pending */
+  font-weight: bold;
+}
