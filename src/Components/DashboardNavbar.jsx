@@ -82,9 +82,7 @@ const DashboardNavbar = () => {
     fetchUser();
   }, []);
 
-  // Function to determine if a link is active
   const isLinkActive = (path) => {
-    // location.pathname provides the current URL path, e.g., "/holdings"
     return location.pathname === path;
   };
 
