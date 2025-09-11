@@ -1,0 +1,176 @@
+.reset-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f5f5f5;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.reset-form-wrapper {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 380px;
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: auto;
+}
+
+/* Logo and title styling */
+.logo-section .logo {
+  width: 50px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+/* Radio buttons and labels */
+.radio-group {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.radio-label {
+  display: block;
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.radio-label input {
+  margin-right: 8px;
+  accent-color: #4184f3;
+}
+
+/* Input fields */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #4184f3;
+}
+
+/* "Receive OTP" text */
+.otp-header {
+  text-align: left;
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Buttons and links */
+.buttons-group {
+  margin-top: 30px;
+}
+
+.continue-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+  color: #fff;
+  background-color: #ff5722;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.continue-btn:hover {
+  background-color: #e64a19;
+}
+
+.cancel-link {
+  display: block;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #4184f3;
+  text-decoration: none;
+}
+
+.cancel-link:hover {
+  text-decoration: underline;
+}
+
+/* New footer styles with unique class names */
+.reset_footer_new {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px 0;
+  background-color: #f5f5f5;
+  margin-top: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.reset_footer_apps {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.reset_footer_apps .reset_footer_icon {
+  height: 20px;
+  width: auto;
+  cursor: pointer;
+}
+
+.reset_footer_zerodha_logo {
+  margin-bottom: 5px;
+}
+
+.reset_footer_zerodha_logo .reset_footer_logo {
+  height: 16px;
+  width: auto;
+}
+
+.reset_footer_signup_link {
+  font-size: 0.7rem;
+  margin-bottom: 5px;
+}
+
+.reset_footer_signup_link .reset_footer_link {
+  text-decoration: none;
+  color: #999;
+  transition: color 0.2s ease;
+}
+
+.reset_footer_signup_link .reset_footer_link:hover {
+  color: #ff5722;
+}
+
+.reset_footer_legal {
+  max-width: 500px;
+  font-size: 0.6rem;
+  color: #999;
+  line-height: 1.2;
+  padding: 0 10px;
+}
+
+.reset_footer_legal a {
+  color: #999;
+  text-decoration: none;
+  border-bottom: 1px dotted #999;
+}
