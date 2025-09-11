@@ -68,7 +68,13 @@ const Profile = () => {
     return "*" + str.slice(-4);
   };
 
-  if (loading) return <p>Loading profile...</p>;
+  if (loading) {
+    return (
+      <div className="loader-container">
+        <div className="loader"></div>
+      </div>
+    );
+  }
   if (!user) return <p>Couldn’t load profile data.</p>;
 
   return (

@@ -14,17 +14,12 @@ import SupportIcon from "@mui/icons-material/Support";
 import "./style.css";
 
 const DashboardNavbar = () => {
-  const [selectedMenu, setSelectedMenu] = useState(0);
   const [selectProfile, setSelectProfile] = useState(false);
   const [user, setUser] = useState(null);
 
   const dropdownRef = useRef(null);
-  const location = useLocation();
+  const location = useLocation(); // Get the current location object
   const navigate = useNavigate();
-
-  const handleNavClick = (index) => {
-    setSelectedMenu(index);
-  };
 
   const handleProfile = () => {
     setSelectProfile((prev) => !prev);
@@ -44,8 +39,7 @@ const DashboardNavbar = () => {
     setSelectProfile(false);
   }, [location]);
 
-  const activeClass = "selected";
-
+  // Handle logout
   const handleLogout = async () => {
     try {
       await api.post("/user/logout");
@@ -60,7 +54,7 @@ const DashboardNavbar = () => {
     }
   };
 
-  // fetching the data from backend
+  // Fetching the user data
   useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem("accessToken");
@@ -70,10 +64,9 @@ const DashboardNavbar = () => {
       
       try {
         const response = await api.get("/user/profile");
-        setUser(response.data.data); // save the data
+        setUser(response.data.data);
       } catch (err) {
         console.error("Error fetching user data:", err);
-
         const status = err?.response?.status;
 
         if (status === 404 || status === 401) {
@@ -88,6 +81,12 @@ const DashboardNavbar = () => {
     };
     fetchUser();
   }, []);
+
+  // Function to determine if a link is active
+  const isLinkActive = (path) => {
+    // location.pathname provides the current URL path, e.g., "/holdings"
+    return location.pathname === path;
+  };
 
   return (
     <div className="menu-navbar-container">
@@ -104,8 +103,7 @@ const DashboardNavbar = () => {
           <li>
             <Link
               to={"/"}
-              className={`nav-options ${selectedMenu === 0 ? activeClass : ""}`}
-              onClick={() => handleNavClick(0)}
+              className={`nav-options ${isLinkActive("/") ? "selected" : ""}`}
             >
               Dashboard
             </Link>
@@ -113,8 +111,7 @@ const DashboardNavbar = () => {
           <li>
             <Link
               to={"/orders"}
-              className={`nav-options ${selectedMenu === 1 ? activeClass : ""}`}
-              onClick={() => handleNavClick(1)}
+              className={`nav-options ${isLinkActive("/orders") ? "selected" : ""}`}
             >
               Orders
             </Link>
@@ -122,8 +119,7 @@ const DashboardNavbar = () => {
           <li>
             <Link
               to={"/holdings"}
-              className={`nav-options ${selectedMenu === 2 ? activeClass : ""}`}
-              onClick={() => handleNavClick(2)}
+              className={`nav-options ${isLinkActive("/holdings") ? "selected" : ""}`}
             >
               Holdings
             </Link>
@@ -131,8 +127,7 @@ const DashboardNavbar = () => {
           <li>
             <Link
               to={"/positions"}
-              className={`nav-options ${selectedMenu === 3 ? activeClass : ""}`}
-              onClick={() => handleNavClick(3)}
+              className={`nav-options ${isLinkActive("/positions") ? "selected" : ""}`}
             >
               Positions
             </Link>
@@ -140,8 +135,7 @@ const DashboardNavbar = () => {
           <li>
             <Link
               to={"/funds"}
-              className={`nav-options ${selectedMenu === 5 ? activeClass : ""}`}
-              onClick={() => handleNavClick(5)}
+              className={`nav-options ${isLinkActive("/funds") ? "selected" : ""}`}
             >
               Funds
             </Link>
