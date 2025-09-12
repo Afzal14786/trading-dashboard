@@ -10,7 +10,7 @@ const ResetFooter = () => {
       </div>
 
       <div className="reset_footer_zerodha_logo">
-        <img src="/images/zerodha-logo.svg" alt="zerodha logo" className="reset_footer_logo" />
+        <img src="/images/logo.svg" alt="zerodha logo" className="reset_footer_logo" />
       </div>
 
       <div className="reset_footer_signup_link">
