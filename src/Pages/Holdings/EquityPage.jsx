@@ -78,7 +78,7 @@ const EquityPage = () => {
   const refreshHoldings = async () => {
     try {
       const res = await api.get(
-        "http://localhost:5174/api/v1/holdings/allHoldings",
+        "/api/v1/holdings/allHoldings",
         {
           headers: {
             Authorization: `Bearer ${token}`,

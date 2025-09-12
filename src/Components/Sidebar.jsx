@@ -7,7 +7,6 @@ import { WatchListItem } from "./WatchListItem";
 import { watchlist } from "../data/data";
 import useStockSearch from "../hooks/useStockSearch";
 import StockDetail from "../Components/Stock/StockDetail";
-// Remove GeneralContextProvider from this import
 import { GeneralContext } from "./GeneralContext";
 import DonutChart from "../charts/DonutChart";
 

@@ -14,7 +14,7 @@ const DashboardSummary = () => {
   useEffect(() => {
     const getProfileData = async () => {
       try {
-        const response = await api.get("/user/profile");
+        const response = await api.get("/api/v1/user/profile");
         setUser(response.data.data);
       } catch (err) {
         console.error("Error fetching profile:", err);

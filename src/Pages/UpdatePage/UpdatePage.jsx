@@ -44,7 +44,7 @@ const UpdatePage = () => {
     try {
       const token = localStorage.getItem("accessToken");
       const res = await api.post(
-        "/user/profile/update-password",
+        "/api/v1/user/profile/update-password",
         {
           oldPassword: currentPassword,
           newPassword: newPassword,

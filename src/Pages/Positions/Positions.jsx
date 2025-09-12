@@ -15,7 +15,7 @@ const Positions = () => {
 
   const refreshPositions = async () => {
     try {
-      const res = await api.get("/positions/all-positions", {
+      const res = await api.get("/api/v1/positions/all-positions", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -29,7 +29,7 @@ const Positions = () => {
   useEffect(() => {
     const fetchAllPositions = async () => {
       try {
-        const res = await api.get("/positions/all-positions", {
+        const res = await api.get("/api/v1/positions/all-positions", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

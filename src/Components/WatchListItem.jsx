@@ -1,4 +1,4 @@
-import { useState, useContext } from "react"; // ✅ fixed here!
+import { useState, useContext } from "react"; 
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
@@ -41,7 +41,7 @@ const WatchListItem = ({ stock }) => {
 };
 
 const WatchListActions = ({ uid }) => {
-  const { openBuyWindow } = useContext(GeneralContext); // ✅ works now
+  const { openBuyWindow } = useContext(GeneralContext);
 
   return (
     <span className="actions">

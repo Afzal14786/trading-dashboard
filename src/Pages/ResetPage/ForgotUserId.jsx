@@ -16,7 +16,7 @@ const ForgotUserId = () => {
     }
     setIsLoading(true);
     try {
-      const res = await api.post("/user/forgot-userId", { email });
+      const res = await api.post("/api/v1/user/forgot-userId", { email });
       if (res.data.success) {
         toast.success(res.data.message);
       } else {

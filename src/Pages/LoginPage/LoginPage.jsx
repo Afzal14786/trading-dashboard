@@ -88,7 +88,7 @@ const LoginPage = () => {
 
     setIsLoading(true);
     try {
-      const response = await api.post(`/user/login`, {
+      const response = await api.post(`/api/v1/user/login`, {
         identifier,
         password,
       });
@@ -128,12 +128,12 @@ const LoginPage = () => {
           return;
         }
         await confirmationResult.confirm(otp);
-        response = await api.post(`user/login/verify-otp`, {
+        response = await api.post(`/api/v1/user/login/verify-otp`, {
           identifier,
           otp: "verified",
         });
       } else {
-        response = await api.post(`/user/login/verify-otp`, {
+        response = await api.post(`/api/v1/user/login/verify-otp`, {
           identifier,
           otp,
         });
@@ -165,7 +165,7 @@ const LoginPage = () => {
         await window.recaptchaVerifier.render();
         sendPhoneOtp();
       } else {
-        await api.post(`/login`, { identifier, password });
+        await api.post(`/api/v1/user/login`, { identifier, password });
         toast.success("New OTP sent to your email.");
       }
     } catch {

@@ -18,7 +18,7 @@ const DashboardNavbar = () => {
   const [user, setUser] = useState(null);
 
   const dropdownRef = useRef(null);
-  const location = useLocation(); // Get the current location object
+  const location = useLocation(); 
   const navigate = useNavigate();
 
   const handleProfile = () => {
@@ -42,7 +42,7 @@ const DashboardNavbar = () => {
   // Handle logout
   const handleLogout = async () => {
     try {
-      await api.post("/user/logout");
+      await api.post("/api/v1/user/logout");
       toast.success("Logged out successfully!");
     } catch (err) {
       toast.error("Logout failed on the server.");
@@ -63,7 +63,7 @@ const DashboardNavbar = () => {
       }
       
       try {
-        const response = await api.get("/user/profile");
+        const response = await api.get("/api/v1/user/profile");
         setUser(response.data.data);
       } catch (err) {
         console.error("Error fetching user data:", err);

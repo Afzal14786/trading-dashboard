@@ -19,7 +19,7 @@ const HoldingAll = () => {
   const refreshHoldings = async () => {
     try {
       const res = await api.get(
-        "/holdings/allHoldings",
+        "/api/v1/holdings/allHoldings",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -36,7 +36,7 @@ const HoldingAll = () => {
     const fetchHoldings = async () => {
       try {
         const res = await api.get(
-          "/holdings/allHoldings",
+          "/api/v1/holdings/allHoldings",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -44,7 +44,6 @@ const HoldingAll = () => {
           }
         );
         const data = res.data;
-        // console.log(`Data fetch from backed : ${data.json()}`);
 
         if (Array.isArray(data)) {
           setAllHoldings(data);

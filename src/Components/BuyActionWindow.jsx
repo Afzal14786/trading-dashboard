@@ -15,7 +15,7 @@ const BuyActionWindow = ({ uid }) => {
     const token = localStorage.getItem("accessToken");
     const symbol = uid;
     try {
-      const response = await api.post("/order/new-order", {
+      const response = await api.post("/api/v1/order/new-order", {
         symbol: symbol,
         quantity: Number(stockQuantity),
         price: Number(stockPrice),

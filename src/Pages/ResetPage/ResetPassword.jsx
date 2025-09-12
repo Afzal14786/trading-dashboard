@@ -17,7 +17,7 @@ const ResetPassword = () => {
     }
     setIsLoading(true);
     try {
-      const res = await api.post("/user/forgot-password", { email });
+      const res = await api.post("/api/v1//user/forgot-password", { email });
       if (res.data.success) {
         toast.success(res.data.message);
       } else {

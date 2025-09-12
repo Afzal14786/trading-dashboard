@@ -16,7 +16,7 @@ const Profile = () => {
   useEffect(() => {
     const getProfileData = async () => {
       try {
-        const response = await api.get("/user/profile");
+        const response = await api.get("/api/v1/user/profile");
         setUser(response.data.data);
       } catch (err) {
         console.error("Error fetching profile:", err);
@@ -38,7 +38,7 @@ const Profile = () => {
 
     try {
       setUploading(true);
-      const response = await api.post(`/user/profile/upload`, formData, {
+      const response = await api.post(`/api/v1/user/profile/upload`, formData, {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,

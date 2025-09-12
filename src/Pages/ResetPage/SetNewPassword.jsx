@@ -39,7 +39,7 @@ const SetNewPassword = () => {
     }
     setIsLoading(true);
     try {
-      const res = await api.post(`/user/reset-password/${token}`, { newPassword });
+      const res = await api.post(`/api/v1/user/reset-password/${token}`, { newPassword });
       if (res.data.success) {
         toast.success(res.data.message);
         navigate("/login");

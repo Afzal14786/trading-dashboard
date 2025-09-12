@@ -16,7 +16,7 @@ const Orders = () => {
 
   const refreshOrders = async () => {
     try {
-      const res = await api.get("/orders/allorders", {
+      const res = await api.get("/api/v1/orders/all-orders", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -30,7 +30,7 @@ const Orders = () => {
   useEffect(() => {
     const fetchAllOrders = async () => {
       try {
-        const response = await api.get("/order/all-orders", {
+        const response = await api.get("/api/v1/order/all-orders", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

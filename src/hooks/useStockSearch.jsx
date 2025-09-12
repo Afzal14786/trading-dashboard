@@ -17,7 +17,7 @@ const useStockSearch = (query) => {
       setLoading(true);
       try {
         const res = await api.get(
-          `/stocks/search?q=${query}`
+          `/api/v1/stocks/search?q=${query}`
         );
 
         if (res.data.success) {
