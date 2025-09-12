@@ -13,7 +13,7 @@ Designed with **scalability**, **performance**, and **user experience** in mind,
 
 Think of this as your **command center for trading** — blending **clean UI** with **powerful functionality**.  
 
-**Live Demo** : [Not Yet Deployed]()  
+**Live Demo** : [FinVista Trading Dashboard](https://finvista-trading-dashboard.onrender.com)  
 
 ---   
 
