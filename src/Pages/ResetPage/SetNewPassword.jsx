@@ -14,19 +14,18 @@ const SetNewPassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  
-  
+
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  
+
   useEffect(() => {
-    // Verify token validity on component mount
+    // Optionally validate token here
   }, [token]);
 
-  
   const toggleNewPasswordVisibility = () => {
     setShowNewPassword(!showNewPassword);
   };
+
   const toggleConfirmPasswordVisibility = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
@@ -39,7 +38,9 @@ const SetNewPassword = () => {
     }
     setIsLoading(true);
     try {
-      const res = await api.post(`/api/v1/user/reset-password/${token}`, { newPassword });
+      const res = await api.post(`/api/v1/user/reset-password/${token}`, {
+        newPassword,
+      });
       if (res.data.success) {
         toast.success(res.data.message);
         navigate("/login");
@@ -64,7 +65,6 @@ const SetNewPassword = () => {
         </div>
         <h2 className="title">Set a new password</h2>
         <form onSubmit={handleSubmit}>
-          
           <div className="input-group">
             <div className="password-input-wrapper">
               <input
@@ -75,12 +75,15 @@ const SetNewPassword = () => {
                 className="input-field"
                 required
               />
-              <span onClick={toggleNewPasswordVisibility} className="password-toggle-icon">
+              <span
+                onClick={toggleNewPasswordVisibility}
+                className="password-toggle-icon"
+              >
                 {showNewPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
               </span>
             </div>
           </div>
-          
+
           <div className="input-group">
             <div className="password-input-wrapper">
               <input
@@ -91,17 +94,33 @@ const SetNewPassword = () => {
                 className="input-field"
                 required
               />
-              <span onClick={toggleConfirmPasswordVisibility} className="password-toggle-icon">
+              <span
+                onClick={toggleConfirmPasswordVisibility}
+                className="password-toggle-icon"
+              >
                 {showConfirmPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
               </span>
             </div>
           </div>
+
           <div className="buttons-group">
             <button type="submit" className="continue-btn" disabled={isLoading}>
               {isLoading ? "Loading..." : "Reset Password"}
             </button>
           </div>
         </form>
+
+        <div className="back-to-login">
+          <p>
+            Changed your mind?{" "}
+            <span
+              onClick={() => navigate("/login")}
+              className="login-link"
+            >
+              Back to Login
+            </span>
+          </p>
+        </div>
       </div>
       <ResetFooter />
     </div>
