@@ -151,7 +151,7 @@ It handles:
 ![Login Process](./docs/design_assets/Dashboard_Auth_Flow.png)  
 
 ### 📝 Signup (from Landing Page)  
-1. Users start at the **[FinVista Landing Page](landing_page_url/signup)**.
+1. Users start at the **[FinVista Landing Page](ps://finvista-trading-frontend.onrender.com/signup)**.
 2. They create an account by entering basic details (___Name, Email, Phone Number, Password___).  
 3. During signup, a **temporary OTP** is used (_as phone billing is currently disabled_).
     - 🔢 There are **10 demo phone numbers** with **pre-mapped OTPs** available in the frontend **[README.md](https://github.com/Afzal14786/Trading-Platform)**.
